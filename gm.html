@@ -1,0 +1,3898 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#0a0e27">
+  <meta name="description" content="mumbigames - Jukwaa la michezo Tanzania">
+  <title>KANYO GAMING TZ- Jukwaa la Michezo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+ <style>
+     /* ============================================================
+   mumbigames - Full Stylesheet
+   Version 2.0 | Dark/Light | RTL Support | Responsive
+   ============================================================ */
+
+/* ============ CSS VARIABLES - DARK (DEFAULT) ============ */
+:root{
+  --bg:#0a0e27;
+  --bg2:#111735;
+  --bg3:#0d1230;
+  --card:#00ffffaf;
+  --card2:#17cd11af;
+  --border:#af6affd1;
+  --border2:#2d3b7a;
+  --text:#e8ecff;
+  --text2:#c5cdf0;
+  --muted:#8b96c4;
+  --muted2:#6a76a8;
+
+  --primary:#00e0a4;
+  --primary-dark:#00b883;
+  --primary2:#00a3ff;
+  --accent:#7c4dff;
+  --danger:#ff4d6d;
+  --warn:#ffb020;
+  --success:#22c55e;
+  --gold:#ffd700;
+  --silver:#c0c0c0;
+  --bronze:#cd7f32;
+
+  --gradient-primary:linear-gradient(135deg,#00e0a4,#00a3ff);
+  --gradient-accent:linear-gradient(135deg,#7c4dff,#ff4d6d);
+  --gradient-gold:linear-gradient(135deg,#ffd700,#ff8c00);
+  --gradient-danger:linear-gradient(135deg,#ff4d6d,#ff8c42);
+
+  --shadow-sm:0 2px 8px rgba(0,0,0,.3);
+  --shadow:0 8px 24px rgba(0,0,0,.4);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.5);
+  --shadow-glow:0 0 24px rgba(0,224,164,.3);
+
+  --radius-sm:8px;
+  --radius:12px;
+  --radius-lg:16px;
+  --radius-xl:24px;
+
+  --header-h:64px;
+  --sidebar-w:290px;
+
+  --transition:.25s cubic-bezier(.4,0,.2,1);
+}
+
+/* ============ LIGHT THEME ============ */
+body[data-theme="light"]{
+  --bg:#f0f4fb;
+  --bg2:#ffffff;
+  --bg3:#e8eef9;
+  --card:#ffffff;
+  --card2:#f7f9fd;
+  --border:#dde3f0;
+  --border2:#c5d0e8;
+  --text:#0a0e27;
+  --text2:#1e2a52;
+  --muted:#5c6789;
+  --muted2:#8a95b8;
+
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow:0 8px 24px rgba(0,0,0,.1);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.15);
+  --shadow-glow:0 0 24px rgba(0,224,164,.25);
+}
+
+/* ============ RESET ============ */
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background .3s, color .3s;
+  line-height:1.5;
+  font-size:15px;
+}
+body.rtl{direction:rtl;}
+body.rtl .back-btn{transform:scaleX(-1);}
+body.rtl .sidebar{left:auto; right:0; transform:translateX(100%);}
+body.rtl .sidebar.open{transform:translateX(0);}
+
+img{max-width:100%; display:block;}
+a{color:var(--primary); text-decoration:none; transition:color var(--transition);}
+a:hover{color:var(--primary2);}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
+input,textarea,select{
+  width:100%;
+  padding:12px 16px;
+  margin:6px 0;
+  background:var(--bg2);
+  color:var(--text);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  font-size:14px;
+  font-family:inherit;
+  outline:none;
+  transition:border var(--transition), box-shadow var(--transition);
+}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(0,224,164,.15);
+}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+textarea{min-height:90px; resize:vertical; font-family:inherit;}
+select{cursor:pointer; appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%); background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%; background-size:5px 5px; background-repeat:no-repeat; padding-right:40px;}
+
+/* ============ APP LOADER ============ */
+.app-loader{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:20px;
+  transition:opacity .5s, visibility .5s;
+}
+.app-loader.hide{opacity:0; visibility:hidden;}
+.loader-logo{
+  font-size:80px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0) rotate(0);}
+  50%{transform:translateY(-20px) rotate(10deg);}
+}
+.loader-text{
+  font-size:28px; font-weight:800; letter-spacing:-1px;
+}
+.loader-text span{
+  background:var(--gradient-primary);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.loader-bar{
+  width:200px; height:4px; background:var(--card); border-radius:4px; overflow:hidden;
+}
+.loader-bar div{
+  height:100%; width:0;
+  background:var(--gradient-primary);
+  animation:load 1.8s ease-in-out infinite;
+}
+@keyframes load{
+  0%{width:0;} 50%{width:70%;} 100%{width:100%;}
+}
+
+/* ============ HEADER ============ */
+.app-header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  height:var(--header-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 16px;
+  background:rgba(10,14,39,.85);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+body[data-theme="light"] .app-header{background:rgba(255,255,255,.9);}
+.logo{
+  font-size:20px; font-weight:800; letter-spacing:-.5px;
+  position:absolute; left:50%; transform:translateX(-50%);
+}
+body.rtl .logo{left:auto; right:50%; transform:translateX(50%);}
+.logo span{
+  background:var(--gradient-primary);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.icon-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px; border-radius:var(--radius);
+  background:var(--card); color:var(--text);
+  border:1px solid var(--border);
+  font-size:18px;
+  transition:all var(--transition);
+  position:relative;
+}
+.icon-btn:hover{background:var(--card2); border-color:var(--primary); transform:translateY(-1px);}
+.icon-btn:active{transform:scale(.95);}
+.icon-btn.small{width:32px; height:32px; font-size:14px;}
+.header-actions{display:flex; gap:8px; align-items:center;}
+
+.notif-btn{position:relative;}
+.notif-badge{
+  position:absolute; top:-4px; right:-4px;
+  min-width:18px; height:18px; padding:0 5px;
+  background:var(--danger); color:#fff;
+  border-radius:20px;
+  font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,77,109,.7);}
+  50%{box-shadow:0 0 0 8px rgba(255,77,109,0);}
+}
+
+/* ============ SIDEBAR ============ */
+.sidebar{
+  position:fixed; top:0; left:0; bottom:0;
+  width:var(--sidebar-w);
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  z-index:100;
+  transform:translateX(-100%);
+  transition:transform .3s ease;
+  display:flex; flex-direction:column;
+  overflow-y:auto;
+  padding:16px;
+  padding-top:calc(var(--header-h) + 12px);
+}
+.sidebar.open{transform:translateX(0); box-shadow:var(--shadow-lg);}
+.sidebar::-webkit-scrollbar{width:6px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border); border-radius:10px;}
+
+.sidebar-header{
+  display:flex; gap:12px; align-items:center;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:16px;
+}
+.sidebar-title{font-weight:800; font-size:15px;}
+.sidebar-sub{font-size:12px; color:var(--muted);}
+
+.avatar{
+  width:44px; height:44px; border-radius:50%;
+  background:var(--gradient-primary);
+  display:grid; place-items:center;
+  font-size:22px; color:#000; font-weight:800;
+  flex-shrink:0;
+  border:2px solid var(--card);
+}
+.avatar.big{width:72px; height:72px; font-size:34px;}
+
+.wallet-mini{
+  display:flex; gap:8px; padding:10px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); margin-bottom:16px;
+}
+.wallet-item{
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  font-size:11px; font-weight:700; color:var(--text);
+}
+.wallet-item .w-icon{font-size:16px; margin-bottom:2px;}
+
+.sidebar-nav{flex:1; display:flex; flex-direction:column; gap:16px;}
+.nav-group{display:flex; flex-direction:column; gap:2px;}
+.nav-group-title{
+  font-size:10px; font-weight:800; color:var(--muted2);
+  letter-spacing:1.5px; padding:4px 12px; text-transform:uppercase;
+}
+.nav-item{
+  display:flex; align-items:center; gap:12px;
+  padding:11px 14px;
+  border-radius:var(--radius);
+  color:var(--text); cursor:pointer;
+  font-size:14px; font-weight:500;
+  transition:all var(--transition);
+  border:none; background:none;
+  text-align:left; width:100%;
+  font-family:inherit;
+  position:relative;
+}
+body.rtl .nav-item{text-align:right;}
+.nav-item:hover{background:var(--card);}
+.nav-item.active{
+  background:var(--gradient-primary);
+  color:#000; font-weight:700;
+  box-shadow:var(--shadow-glow);
+}
+.nav-item span:first-child{
+  font-size:18px; width:24px; text-align:center; flex-shrink:0;
+}
+.admin-link{
+  background:var(--gradient-danger);
+  color:#000 !important; font-weight:800;
+  margin-top:12px;
+}
+.cart-count{
+  background:var(--danger); color:#fff;
+  padding:2px 8px; border-radius:20px;
+  font-size:10px; font-weight:800;
+  margin-left:auto;
+}
+.sidebar-footer{
+  border-top:1px solid var(--border);
+  padding-top:12px; margin-top:12px;
+}
+
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(2px);
+  z-index:90;
+  opacity:0; pointer-events:none;
+  transition:opacity var(--transition);
+}
+.overlay.show{opacity:1; pointer-events:auto;}
+
+/* ============ MAIN ============ */
+.app-main{
+  padding:calc(var(--header-h) + 16px) 16px 100px;
+  max-width:960px;
+  margin:0 auto;
+  min-height:100vh;
+}
+.screen{display:none; animation:fadeIn .3s ease;}
+.screen.active{display:block;}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(12px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.screen-head{margin-bottom:16px;}
+.screen-head h2{font-size:24px; margin-bottom:4px; font-weight:800; letter-spacing:-.5px;}
+.screen-head h3{font-size:18px; margin-bottom:4px; font-weight:700;}
+.muted{color:var(--muted); font-size:13px;}
+.center{text-align:center;}
+.small{font-size:12px;}
+.online{color:var(--primary); font-weight:700;}
+hr{border:none; border-top:1px solid var(--border); margin:14px 0;}
+
+.section-title{
+  display:flex; justify-content:space-between; align-items:center;
+  margin:24px 0 12px;
+}
+.section-title h3{font-size:17px; font-weight:800;}
+
+/* ============ BACK BUTTON ============ */
+.back-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--card); border:1px solid var(--border);
+  color:var(--text); font-size:18px;
+  cursor:pointer; padding:8px 14px; border-radius:var(--radius);
+  margin-bottom:12px;
+  transition:all var(--transition);
+}
+.back-btn:hover{background:var(--primary); color:#000; border-color:var(--primary);}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 20px;
+  border-radius:var(--radius);
+  border:1.5px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:14px; font-weight:700;
+  transition:all var(--transition);
+  font-family:inherit;
+  width:100%;
+  margin-top:8px;
+  cursor:pointer;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm);}
+.btn:active{transform:translateY(0) scale(.98);}
+.btn.primary{
+  background:var(--gradient-primary);
+  color:#000; border:none;
+  box-shadow:0 4px 16px rgba(0,224,164,.3);
+}
+.btn.primary:hover{box-shadow:0 8px 24px rgba(0,224,164,.5);}
+.btn.danger{
+  background:var(--gradient-danger);
+  color:#fff; border:none;
+}
+.btn.small{padding:8px 14px; font-size:12px; width:auto; margin:0;}
+.btn.big{padding:16px 24px; font-size:16px;}
+.btn:disabled{opacity:.5; cursor:not-allowed; transform:none !important;}
+
+.chip{
+  padding:8px 16px; border-radius:20px;
+  border:1.5px solid var(--border);
+  background:var(--card); color:var(--text);
+  font-size:13px; font-weight:600;
+  transition:all var(--transition);
+  font-family:inherit; cursor:pointer;
+  white-space:nowrap;
+}
+.chip.active,.chip:hover{
+  background:var(--gradient-primary);
+  color:#000; border-color:transparent;
+  box-shadow:0 4px 12px rgba(0,224,164,.3);
+}
+
+.tabs{
+  display:flex; gap:6px; overflow-x:auto;
+  padding:4px; margin:14px 0;
+  scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{
+  padding:10px 18px; border:none;
+  background:var(--card); color:var(--muted);
+  border-radius:var(--radius);
+  font-size:13px; font-weight:700;
+  transition:all var(--transition);
+  font-family:inherit; cursor:pointer;
+  white-space:nowrap;
+}
+.tab.active{
+  background:var(--gradient-primary);
+  color:#000;
+  box-shadow:0 4px 12px rgba(0,224,164,.3);
+}
+
+/* ============ CARDS ============ */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:16px;
+  margin:12px 0;
+  box-shadow:var(--shadow-sm);
+  transition:all var(--transition);
+}
+.card h4{font-size:15px; margin-bottom:10px; font-weight:800;}
+
+/* ============ HOME HERO ============ */
+.hero{
+  background:linear-gradient(135deg,rgba(0,224,164,.15),rgba(0,163,255,.15));
+  border:1.5px solid var(--border2);
+  border-radius:var(--radius-xl);
+  padding:24px;
+  margin-bottom:16px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:''; position:absolute; top:-50%; right:-50%;
+  width:200px; height:200px;
+  background:radial-gradient(circle,rgba(0,224,164,.4),transparent 70%);
+  border-radius:50%;
+  animation:float 6s infinite ease-in-out;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0);}
+  50%{transform:translate(-20px,20px);}
+}
+.hero h2{font-size:22px; margin-bottom:6px; position:relative; z-index:1;}
+.hero p{position:relative; z-index:1;}
+.hero-actions{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; position:relative; z-index:1;}
+.hero-actions .btn{width:auto; margin:0; flex:1; min-width:140px;}
+
+.filters{
+  display:flex; gap:6px; overflow-x:auto;
+  padding:6px 0;
+  scrollbar-width:none;
+}
+.filters::-webkit-scrollbar{display:none;}
+
+/* ============ FEATURED SCROLL ============ */
+.featured-scroll{
+  display:flex; gap:12px; overflow-x:auto;
+  padding:4px 0 12px;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.featured-scroll::-webkit-scrollbar{display:none;}
+.featured-card{
+  flex:0 0 220px;
+  scroll-snap-align:start;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer;
+  transition:all var(--transition);
+  position:relative;
+}
+.featured-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-glow); border-color:var(--primary);}
+.featured-card .thumb{
+  height:120px;
+  background:var(--gradient-primary);
+  display:grid; place-items:center;
+  font-size:44px;
+  position:relative;
+  overflow:hidden;
+}
+.featured-card .thumb img{width:100%; height:100%; object-fit:cover;}
+.featured-card .info{padding:10px;}
+.featured-card .title{font-size:13px; font-weight:800; margin-bottom:4px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.featured-card .rating{font-size:11px; color:var(--gold); font-weight:700;}
+
+/* ============ GAMES GRID ============ */
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.game-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer;
+  transition:all var(--transition);
+  position:relative;
+}
+.game-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-glow);
+  border-color:var(--primary);
+}
+.game-thumb{
+  width:100%; height:110px;
+  object-fit:cover;
+  background:var(--gradient-primary);
+  display:grid; place-items:center;
+  font-size:44px;
+  position:relative;
+}
+.game-thumb img{width:100%; height:100%; object-fit:cover;}
+.game-info{padding:10px;}
+.game-title{
+  font-size:13px; font-weight:800; margin-bottom:6px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.game-meta{display:flex; justify-content:space-between; align-items:center;}
+.game-badge{
+  display:inline-block; padding:3px 8px;
+  border-radius:20px;
+  font-size:9px; font-weight:800;
+  text-transform:uppercase; letter-spacing:.5px;
+}
+.badge-bure{background:var(--primary); color:#000;}
+.badge-kulipia{background:var(--warn); color:#000;}
+.badge-offline{background:var(--muted); color:#fff;}
+.badge-online{background:var(--primary2); color:#000;}
+.game-price{font-size:11px; font-weight:800; color:var(--gold);}
+
+/* ============ GAME DETAIL ============ */
+.game-detail-hero{
+  height:200px;
+  background:var(--gradient-primary);
+  border-radius:var(--radius-xl);
+  display:grid; place-items:center;
+  font-size:80px;
+  margin-bottom:16px;
+  overflow:hidden;
+  position:relative;
+}
+.game-detail-hero img{width:100%; height:100%; object-fit:cover;}
+.game-detail-title{font-size:24px; font-weight:800; margin-bottom:8px;}
+.game-detail-meta{display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; font-size:13px; color:var(--muted);}
+.trailer-box{
+  width:100%; aspect-ratio:16/9;
+  background:#000; border-radius:var(--radius);
+  display:grid; place-items:center;
+  color:var(--muted); font-size:14px;
+  margin:12px 0;
+}
+.screenshots-scroll{
+  display:flex; gap:8px; overflow-x:auto;
+  padding:8px 0;
+  scrollbar-width:none;
+}
+.screenshots-scroll::-webkit-scrollbar{display:none;}
+.screenshot{
+  flex:0 0 200px; height:120px;
+  background:var(--card2); border-radius:var(--radius);
+  display:grid; place-items:center;
+  font-size:32px;
+}
+
+/* ============ CHAT ============ */
+.chat-messages{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:14px;
+  height:380px;
+  overflow-y:auto;
+  margin:12px 0;
+  display:flex; flex-direction:column; gap:8px;
+  scrollbar-width:thin;
+}
+.chat-messages::-webkit-scrollbar{width:6px;}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--border); border-radius:10px;}
+.chat-messages.small{height:200px;}
+.msg{
+  padding:8px 14px;
+  border-radius:16px;
+  max-width:78%;
+  font-size:13px;
+  word-wrap:break-word;
+  animation:msgIn .25s ease;
+  line-height:1.45;
+}
+@keyframes msgIn{
+  from{opacity:0; transform:translateY(8px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.msg.me{
+  background:var(--gradient-primary);
+  color:#000;
+  align-self:flex-end;
+  border-bottom-right-radius:4px;
+}
+.msg.other{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  align-self:flex-start;
+  border-bottom-left-radius:4px;
+}
+body.rtl .msg.me{align-self:flex-start; border-bottom-right-radius:16px; border-bottom-left-radius:4px;}
+body.rtl .msg.other{align-self:flex-end; border-bottom-left-radius:16px; border-bottom-right-radius:4px;}
+.msg .who{
+  font-size:10px; opacity:.75;
+  margin-bottom:3px; font-weight:800;
+}
+.chat-input-row{display:flex; gap:8px;}
+.chat-input-row input{margin:0;}
+.chat-input-row .btn{width:auto; margin:0; padding:12px 20px; flex-shrink:0;}
+
+/* ============ SHOP ============ */
+.safety-note{
+  background:linear-gradient(135deg,rgba(0,224,164,.1),rgba(0,163,255,.1));
+  border:1.5px solid var(--primary);
+  border-radius:var(--radius);
+  padding:14px;
+  font-size:12.5px;
+  line-height:1.6;
+  margin:14px 0;
+}
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;
+}
+.shop-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  transition:all var(--transition);
+}
+.shop-card:hover{transform:translateY(-3px); box-shadow:var(--shadow);}
+.shop-card img{width:100%; height:130px; object-fit:cover; background:var(--card2);}
+.shop-card .no-img{
+  width:100%; height:130px;
+  background:var(--gradient-primary);
+  display:grid; place-items:center; font-size:48px;
+}
+.shop-card .body{padding:10px;}
+.shop-card .name{font-size:13px; font-weight:800; margin-bottom:4px;}
+.shop-card .price{color:var(--gold); font-weight:800; margin:6px 0; font-size:14px;}
+.shop-card .seller{font-size:11px; color:var(--muted); margin-bottom:8px;}
+.shop-card .actions{display:flex; gap:6px;}
+
+/* ============ LEADERBOARD ============ */
+.lb-row{
+  display:flex; align-items:center; gap:12px;
+  padding:14px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin:6px 0;
+  transition:all var(--transition);
+}
+.lb-row:hover{transform:translateX(4px); border-color:var(--primary);}
+.lb-row.top1{background:linear-gradient(135deg,rgba(255,215,0,.15),var(--card)); border-color:var(--gold);}
+.lb-row.top2{background:linear-gradient(135deg,rgba(192,192,192,.15),var(--card)); border-color:var(--silver);}
+.lb-row.top3{background:linear-gradient(135deg,rgba(205,127,50,.15),var(--card)); border-color:var(--bronze);}
+.lb-rank{
+  font-size:20px; font-weight:800;
+  width:40px; text-align:center;
+}
+.lb-rank.gold{color:var(--gold);}
+.lb-rank.silver{color:var(--silver);}
+.lb-rank.bronze{color:var(--bronze);}
+.lb-name{flex:1; font-weight:700; font-size:14px;}
+.lb-score{color:var(--primary); font-weight:800; font-size:14px;}
+
+/* ============ NEWS ============ */
+.news-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:16px;
+  margin:10px 0;
+  transition:all var(--transition);
+}
+.news-card:hover{border-color:var(--primary); transform:translateX(4px);}
+.news-card h4{font-size:15px; margin-bottom:6px; font-weight:800;}
+.news-card .date{font-size:11px; color:var(--muted); margin-bottom:8px;}
+.news-card .body{font-size:13px; color:var(--text2); line-height:1.6;}
+
+/* ============ ACHIEVEMENTS ============ */
+.ach-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:12px;
+}
+.ach{
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:14px 10px;
+  text-align:center;
+  transition:all var(--transition);
+}
+.ach.unlocked{
+  border-color:var(--primary);
+  box-shadow:0 0 20px rgba(0,224,164,.25);
+  background:linear-gradient(135deg,rgba(0,224,164,.1),var(--card));
+}
+.ach .icon{font-size:32px; margin-bottom:6px;}
+.ach .name{font-size:11px; font-weight:800;}
+.ach .desc{font-size:10px; color:var(--muted); margin-top:4px;}
+.ach.locked{opacity:.35; filter:grayscale(1);}
+
+/* ============ STATS ============ */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.stat-box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:20px 14px;
+  text-align:center;
+  transition:all var(--transition);
+}
+.stat-box:hover{transform:translateY(-4px); border-color:var(--primary);}
+.stat-box .num{
+  font-size:28px; font-weight:800;
+  background:var(--gradient-primary);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  line-height:1.1;
+}
+.stat-box .label{font-size:11px; color:var(--muted); margin-top:6px; font-weight:600;}
+
+/* ============ PROFILE ============ */
+.profile-head{
+  display:flex; gap:16px; align-items:center;
+  margin-bottom:16px;
+}
+.profile-stats{
+  display:flex; gap:12px; margin-top:8px;
+  font-size:12px; color:var(--muted);
+}
+.profile-stats span{display:flex; align-items:center; gap:4px;}
+
+/* ============ WALLET ============ */
+.wallet-card{
+  background:var(--gradient-primary);
+  color:#000;
+  border-radius:var(--radius-xl);
+  padding:24px;
+  margin:12px 0;
+  box-shadow:0 12px 32px rgba(0,224,164,.35);
+  position:relative;
+  overflow:hidden;
+}
+.wallet-card::before{
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:180px; height:180px;
+  background:rgba(255,255,255,.15);
+  border-radius:50%;
+}
+.wallet-balance{position:relative; z-index:1;}
+.balance-amount{font-size:32px; font-weight:900; margin-top:4px; letter-spacing:-1px;}
+.wallet-actions{
+  display:flex; gap:8px; margin-top:16px; position:relative; z-index:1;
+}
+.wallet-actions .btn{
+  background:rgba(0,0,0,.2); color:#fff;
+  border:none; margin:0; flex:1;
+}
+.wallet-actions .btn:hover{background:rgba(0,0,0,.35);}
+.gems-pill{
+  display:inline-flex; align-items:center; gap:6px;
+  background:linear-gradient(135deg,#7c4dff,#00a3ff);
+  color:#fff; padding:10px 18px;
+  border-radius:20px; font-weight:800;
+}
+
+/* ============ PAYMENT ============ */
+.payment-methods{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:8px; margin:12px 0;
+}
+.pay-option{
+  display:flex; align-items:center; gap:8px;
+  padding:12px;
+  background:var(--bg2);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all var(--transition);
+  font-size:13px; font-weight:600;
+}
+.pay-option:hover{border-color:var(--primary);}
+.pay-option input{width:auto; margin:0;}
+.pay-option input:checked + span{color:var(--primary); font-weight:800;}
+.promo-row{display:flex; gap:8px; margin-top:12px;}
+.promo-row input{margin:0;}
+.promo-row .btn{width:auto; margin:0; padding:12px 20px;}
+.checkout-total{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 0; margin-top:12px;
+  border-top:2px dashed var(--border);
+  font-weight:800; font-size:14px;
+}
+.total-amount{
+  font-size:22px;
+  background:var(--gradient-primary);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+}
+
+/* ============ RECEIPT ============ */
+.receipt{
+  background:var(--card);
+  border:2px dashed var(--border);
+  border-radius:var(--radius-lg);
+  padding:24px;
+  margin:12px 0;
+  font-family:'Courier New',monospace;
+}
+.receipt h3{text-align:center; margin-bottom:16px; font-size:18px;}
+.receipt-row{
+  display:flex; justify-content:space-between;
+  padding:6px 0; font-size:13px;
+  border-bottom:1px dotted var(--border);
+}
+.receipt-row.total{
+  font-weight:800; font-size:15px;
+  border-bottom:none; border-top:2px solid var(--border);
+  margin-top:12px; padding-top:12px;
+}
+
+/* ============ REWARDS ============ */
+.reward-streak{
+  display:grid; grid-template-columns:repeat(7,1fr);
+  gap:6px; margin:12px 0;
+}
+.streak-day{
+  aspect-ratio:1;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:10px; font-weight:700;
+  transition:all var(--transition);
+}
+.streak-day.claimed{background:var(--gradient-primary); color:#000; border-color:transparent;}
+.streak-day.today{border-color:var(--warn); box-shadow:0 0 16px rgba(255,176,32,.5);}
+.streak-day .day-icon{font-size:18px;}
+
+.spin-wheel-area{text-align:center; margin:24px 0;}
+.spin-wheel{
+  position:relative;
+  width:240px; height:240px;
+  margin:20px auto;
+}
+.wheel-pointer{
+  position:absolute; top:-14px; left:50%;
+  transform:translateX(-50%);
+  font-size:28px; color:var(--danger);
+  z-index:2;
+  animation:bouncePointer 1s infinite;
+}
+@keyframes bouncePointer{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(4px);}
+}
+.wheel{
+  width:100%; height:100%;
+  border-radius:50%;
+  background:conic-gradient(
+    #00e0a4 0deg 45deg, #00a3ff 45deg 90deg,
+    #7c4dff 90deg 135deg, #ff4d6d 135deg 180deg,
+    #ffb020 180deg 225deg, #22c55e 225deg 270deg,
+    #ff8c42 270deg 315deg, #4dd0e1 315deg 360deg
+  );
+  border:6px solid var(--card);
+  box-shadow:0 0 24px rgba(0,0,0,.4);
+  transition:transform 4s cubic-bezier(.2,.8,.3,1);
+  position:relative;
+}
+.wheel::after{
+  content:'🎁'; position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:32px;
+  background:var(--card);
+  width:60px; height:60px;
+  border-radius:50%;
+  display:grid; place-items:center;
+}
+
+.mystery-box-area{text-align:center; margin:24px 0;}
+.mystery-box{
+  font-size:80px;
+  margin:16px auto;
+  cursor:pointer;
+  transition:all .3s;
+  animation:shakeBox 2s infinite;
+}
+@keyframes shakeBox{
+  0%,90%,100%{transform:rotate(0);}
+  92%{transform:rotate(-8deg);}
+  94%{transform:rotate(8deg);}
+  96%{transform:rotate(-6deg);}
+  98%{transform:rotate(6deg);}
+}
+.mystery-box:hover{transform:scale(1.1);}
+.mystery-box.opened{animation:popOpen .5s; font-size:110px;}
+@keyframes popOpen{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.4) rotate(15deg);}
+  100%{transform:scale(1);}
+}
+
+/* ============ MISSIONS ============ */
+.mission-item{
+  display:flex; gap:12px; align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px; margin:8px 0;
+  transition:all var(--transition);
+}
+.mission-item.completed{
+  border-color:var(--primary);
+  background:linear-gradient(135deg,rgba(0,224,164,.1),var(--card));
+}
+.mission-icon{font-size:28px;}
+.mission-body{flex:1;}
+.mission-title{font-size:13px; font-weight:800; margin-bottom:4px;}
+.mission-progress{
+  height:6px; background:var(--bg2);
+  border-radius:6px; overflow:hidden; margin-top:6px;
+}
+.mission-progress-fill{
+  height:100%; background:var(--gradient-primary);
+  border-radius:6px;
+  transition:width .5s;
+}
+.mission-reward{font-size:11px; color:var(--gold); font-weight:800;}
+
+/* ============ SEASON PASS ============ */
+.season-progress{margin:16px 0;}
+.progress-bar{
+  height:12px; background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px; overflow:hidden;
+  margin-bottom:6px;
+}
+.progress-fill{
+  height:100%;
+  background:var(--gradient-primary);
+  border-radius:12px;
+  transition:width .6s ease;
+}
+.season-reward{
+  display:flex; gap:12px; align-items:center;
+  padding:12px; margin:6px 0;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.season-reward.locked{opacity:.5;}
+.season-reward.claimed{border-color:var(--primary);}
+
+/* ============ MULTIPLAYER ============ */
+.room-card{border:2px solid var(--primary); box-shadow:var(--shadow-glow);}
+.room-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-bottom:12px; margin-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.room-code{
+  font-family:'Courier New',monospace;
+  font-size:20px; font-weight:900;
+  color:var(--primary);
+  letter-spacing:2px;
+}
+.players-list{
+  display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;
+}
+.player-chip{
+  display:flex; align-items:center; gap:6px;
+  padding:6px 12px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-size:12px; font-weight:700;
+}
+.player-chip.host{border-color:var(--gold);}
+.player-chip::before{
+  content:''; width:8px; height:8px;
+  background:var(--success); border-radius:50%;
+}
+
+/* ============ GAME ARENA ============ */
+#gameArena{
+  margin-top:16px;
+  padding:16px;
+  background:var(--card);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+}
+.ttt-board{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:8px; max-width:320px; margin:0 auto;
+}
+.ttt-cell{
+  aspect-ratio:1;
+  background:var(--bg2);
+  border:2px solid var(--border);
+  border-radius:var(--radius);
+  font-size:44px; font-weight:900;
+  display:grid; place-items:center;
+  cursor:pointer;
+  transition:all var(--transition);
+}
+.ttt-cell:hover{background:var(--card2); border-color:var(--primary);}
+.ttt-cell.x{color:var(--primary2);}
+.ttt-cell.o{color:var(--danger);}
+.rps-choices{
+  display:flex; gap:12px; justify-content:center; margin:20px 0;
+}
+.rps-choice{
+  font-size:56px; padding:12px 20px;
+  background:var(--bg2); border:2px solid var(--border);
+  border-radius:var(--radius-lg);
+  cursor:pointer; transition:all var(--transition);
+}
+.rps-choice:hover{transform:scale(1.1); border-color:var(--primary);}
+.rps-choice.selected{border-color:var(--gold); background:rgba(255,215,0,.15);}
+
+/* ============ LIVE STREAMS ============ */
+.live-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:12px;
+}
+.live-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer;
+  transition:all var(--transition);
+  position:relative;
+}
+.live-card:hover{transform:translateY(-4px); border-color:var(--danger);}
+.live-badge{
+  position:absolute; top:8px; left:8px;
+  background:var(--danger); color:#fff;
+  padding:3px 10px; border-radius:20px;
+  font-size:10px; font-weight:800;
+  display:flex; align-items:center; gap:4px;
+  animation:pulse 2s infinite;
+}
+.live-thumb{
+  height:120px;
+  background:var(--gradient-accent);
+  display:grid; place-items:center;
+  font-size:44px;
+}
+.live-info{padding:10px;}
+.live-title{font-size:13px; font-weight:800; margin-bottom:4px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.live-viewers{font-size:11px; color:var(--muted);}
+
+/* ============ CLANS ============ */
+.clan-card{
+  display:flex; gap:12px; align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:14px; margin:8px 0;
+  transition:all var(--transition);
+}
+.clan-card:hover{border-color:var(--primary); transform:translateX(4px);}
+.clan-emblem{
+  width:52px; height:52px;
+  background:var(--gradient-accent);
+  border-radius:var(--radius);
+  display:grid; place-items:center;
+  font-size:24px; font-weight:900;
+  color:#fff;
+}
+.clan-body{flex:1;}
+.clan-name{font-size:14px; font-weight:800;}
+.clan-tag{font-size:11px; color:var(--muted); font-weight:700;}
+.clan-members{font-size:11px; color:var(--primary); font-weight:700; margin-top:4px;}
+
+/* ============ NOTIFICATIONS PANEL ============ */
+.notif-panel{
+  position:fixed; top:0; right:0; bottom:0;
+  width:min(360px,90vw);
+  background:var(--bg2);
+  border-left:1px solid var(--border);
+  z-index:150;
+  transform:translateX(100%);
+  transition:transform var(--transition);
+  display:flex; flex-direction:column;
+  box-shadow:var(--shadow-lg);
+}
+body.rtl .notif-panel{right:auto; left:0; border-left:none; border-right:1px solid var(--border); transform:translateX(-100%);}
+.notif-panel.open{transform:translateX(0);}
+.notif-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px; border-bottom:1px solid var(--border);
+}
+.notif-header h3{font-size:16px; font-weight:800;}
+.notif-header > div{display:flex; gap:6px; align-items:center;}
+.notif-list{
+  flex:1; overflow-y:auto; padding:12px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.notif-item{
+  display:flex; gap:10px;
+  padding:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all var(--transition);
+  position:relative;
+}
+.notif-item.unread{border-left:3px solid var(--primary);}
+body.rtl .notif-item.unread{border-left:1px solid var(--border); border-right:3px solid var(--primary);}
+.notif-item:hover{background:var(--card2); transform:translateX(-2px);}
+.notif-icon{font-size:22px; flex-shrink:0;}
+.notif-body{flex:1;}
+.notif-title{font-size:13px; font-weight:800; margin-bottom:2px;}
+.notif-text{font-size:12px; color:var(--muted); line-height:1.4;}
+.notif-time{font-size:10px; color:var(--muted2); margin-top:4px;}
+
+/* ============ SEARCH OVERLAY ============ */
+.search-overlay{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(0,0,0,.9);
+  backdrop-filter:blur(8px);
+  display:none;
+  padding:80px 16px;
+  overflow-y:auto;
+}
+.search-overlay.show{display:block;}
+.search-box{
+  display:flex; gap:8px;
+  max-width:600px; margin:0 auto 20px;
+}
+.search-box input{margin:0; font-size:16px; padding:14px 18px;}
+.search-box .btn{width:auto; margin:0; padding:14px 20px;}
+#searchResults{max-width:600px; margin:0 auto;}
+
+/* ============ MODAL ============ */
+.modal{
+  position:fixed; inset:0; z-index:300;
+  background:rgba(0,0,0,.8);
+  backdrop-filter:blur(4px);
+  display:none;
+  align-items:center; justify-content:center;
+  padding:20px;
+}
+.modal.show{display:flex;}
+.modal-content{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  padding:32px;
+  text-align:center;
+  max-width:360px; width:100%;
+  box-shadow:var(--shadow-lg);
+  animation:popIn .3s ease;
+}
+@keyframes popIn{
+  from{opacity:0; transform:scale(.9);}
+  to{opacity:1; transform:scale(1);}
+}
+.modal-content h3{margin-bottom:20px; font-size:18px;}
+.spinner{
+  width:56px; height:56px;
+  border:5px solid var(--border);
+  border-top-color:var(--primary);
+  border-radius:50%;
+  margin:0 auto 20px;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed; bottom:24px;
+  left:50%; transform:translateX(-50%) translateY(200px);
+  background:var(--gradient-primary);
+  color:#000; font-weight:800;
+  padding:14px 28px;
+  border-radius:30px;
+  z-index:400;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:var(--shadow-lg);
+  max-width:calc(100vw - 40px);
+  text-align:center;
+  font-size:14px;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.error{background:var(--gradient-danger); color:#fff;}
+.toast.warn{background:var(--gradient-gold); color:#000;}
+
+/* ============ MUSIC PLAYER ============ */
+.music-player{
+  position:fixed; bottom:16px; right:16px;
+  display:flex; gap:10px; align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:6px 6px 6px 12px;
+  box-shadow:var(--shadow);
+  z-index:60;
+  transform:translateY(150px);
+  transition:transform var(--transition);
+  max-width:260px;
+}
+body.rtl .music-player{right:auto; left:16px;}
+.music-player.show{transform:translateY(0);}
+.music-info{flex:1; min-width:0;}
+.music-title{font-size:12px; font-weight:800;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.music-artist{font-size:10px;}
+
+/* ============ FAQ ============ */
+.faq-item{
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{font-size:13px; font-weight:800; display:flex; justify-content:space-between;}
+.faq-a{
+  font-size:12px; color:var(--muted);
+  max-height:0; overflow:hidden;
+  transition:max-height .3s, margin-top .3s;
+  margin-top:0;
+}
+.faq-item.open .faq-a{max-height:200px; margin-top:8px;}
+
+/* ============ SWITCH ============ */
+.switch-row{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 0;
+  font-size:14px;
+}
+.switch-row input[type="checkbox"]{
+  width:48px; height:26px; margin:0;
+  appearance:none;
+  background:var(--border);
+  border-radius:20px;
+  position:relative;
+  cursor:pointer;
+  transition:background var(--transition);
+}
+.switch-row input[type="checkbox"]::after{
+  content:''; position:absolute;
+  top:3px; left:3px;
+  width:20px; height:20px;
+  background:#fff; border-radius:50%;
+  transition:transform var(--transition);
+}
+.switch-row input[type="checkbox"]:checked{background:var(--primary);}
+.switch-row input[type="checkbox"]:checked::after{transform:translateX(22px);}
+
+/* ============ ADMIN MANAGE ============ */
+.admin-game-row{
+  display:flex; gap:12px; align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:12px; margin:8px 0;
+}
+.admin-game-row .thumb{
+  width:56px; height:56px;
+  border-radius:var(--radius-sm);
+  background:var(--gradient-primary);
+  display:grid; place-items:center;
+  font-size:24px; flex-shrink:0;
+  overflow:hidden;
+}
+.admin-game-row .thumb img{width:100%; height:100%; object-fit:cover;}
+.admin-game-row .info{flex:1; min-width:0;}
+.admin-game-row .title{font-size:13px; font-weight:800;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.admin-game-row .sub{font-size:11px; color:var(--muted);}
+.admin-game-row .actions{display:flex; gap:4px;}
+
+.user-row{
+  display:flex; gap:12px; align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:12px; margin:8px 0;
+}
+
+/* ============ SCROLLBAR GLOBAL ============ */
+::-webkit-scrollbar{width:8px; height:8px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border); border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:var(--primary);}
+
+/* ============ RESPONSIVE ============ */
+@media(min-width:640px){
+  .games-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+  .shop-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));}
+  .payment-methods{grid-template-columns:repeat(3,1fr);}
+  .stats-grid{grid-template-columns:repeat(4,1fr);}
+  .hero{padding:32px;}
+  .hero h2{font-size:28px;}
+}
+@media(min-width:768px){
+  .app-main{padding:calc(var(--header-h) + 24px) 24px 60px;}
+  .ach-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+}
+@media(min-width:1024px){
+  .sidebar{transform:translateX(0); padding-top:calc(var(--header-h) + 12px);}
+  .sidebar.open{transform:translateX(0);}
+  body.rtl .sidebar{transform:translateX(0);}
+  .app-main{margin-left:var(--sidebar-w); max-width:1100px; padding-right:32px;}
+  body.rtl .app-main{margin-left:0; margin-right:var(--sidebar-w);}
+  #menuBtn{display:none;}
+  .overlay{display:none !important;}
+  .music-player{bottom:24px; right:calc(50% - 550px + 24px);}
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes shimmer{
+  0%{background-position:-200% 0;}
+  100%{background-position:200% 0;}
+}
+.skeleton{
+  background:linear-gradient(90deg,var(--card) 25%,var(--card2) 50%,var(--card) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;
+  border-radius:var(--radius);
+}
+
+@keyframes confetti{
+  0%{transform:translateY(0) rotate(0); opacity:1;}
+  100%{transform:translateY(100vh) rotate(720deg); opacity:0;}
+}
+.confetti{
+  position:fixed; top:-20px;
+  width:10px; height:10px;
+  z-index:1000;
+  pointer-events:none;
+  animation:confetti 3s linear forwards;
+}
+
+@keyframes glow{
+  0%,100%{box-shadow:0 0 20px rgba(0,224,164,.3);}
+  50%{box-shadow:0 0 40px rgba(0,224,164,.6);}
+}
+.glow{animation:glow 2s infinite;}
+
+/* ============ UTILITY ============ */
+.hidden{display:none !important;}
+.flex{display:flex;}
+.flex-col{flex-direction:column;}
+.gap-4{gap:4px;} .gap-8{gap:8px;} .gap-12{gap:12px;}
+.mt-8{margin-top:8px;} .mt-16{margin-top:16px;} .mt-24{margin-top:24px;}
+.mb-8{margin-bottom:8px;} .mb-16{margin-bottom:16px;}
+.text-center{text-align:center;}
+.text-primary{color:var(--primary);}
+.text-danger{color:var(--danger);}
+.text-gold{color:var(--gold);}
+ </style>
+<body data-theme="dark" data-lang="sw">
+
+<!-- ============ LOADER ============ -->
+<div id="appLoader" class="app-loader">
+  <div class="loader-logo">🎮</div>
+  <div class="loader-text">KANYO <span>GAMES STORE</span></div>
+  <div class="loader-bar"><div></div></div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="app-header">
+  <button class="icon-btn" id="menuBtn" aria-label="Menyu">☰</button>
+  <h1 class="logo" data-i18n="appName">KANYO <span>GAMING</span></h1>
+  <div class="header-actions">
+    <button class="icon-btn" id="searchBtn" aria-label="Tafuta">⌕</button>
+    <button class="icon-btn notif-btn" id="notifBtn" aria-label="Taarifa">
+      🔔<span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+    </button>
+    <button class="icon-btn" id="musicBtn" aria-label="Muziki">🎵</button>
+  </div>
+</header>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="avatar" id="sidebarAvatar">🎮</div>
+    <div>
+      <div class="sidebar-title">KANYO PRO</div>
+      <div class="sidebar-sub" id="sidebarUser">Mgeni</div>
+    </div>
+  </div>
+
+  <div class="wallet-mini" id="walletMini">
+    <div class="wallet-item">
+      <span class="w-icon">💰</span>
+      <span id="walletBalance">TSh 0</span>
+    </div>
+    <div class="wallet-item">
+      <span class="w-icon">💎</span>
+      <span id="gemsBalance">0</span>
+    </div>
+    <div class="wallet-item">
+      <span class="w-icon">⭐</span>
+      <span id="xpBalance">0 XP</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title" data-i18n="mainMenu">MENYU KUU</div>
+      <a class="nav-item active" data-screen="home"><span>🏠</span> <span data-i18n="home">Nyumbani</span></a>
+      <a class="nav-item" data-screen="multiplayer"><span>🎮</span> <span data-i18n="multiplayer">Multiplayer</span></a>
+      <a class="nav-item" data-screen="tournament"><span>🏆</span> <span data-i18n="tournaments">Tournaments</span></a>
+      <a class="nav-item" data-screen="leaderboard"><span>📊</span> <span data-i18n="leaderboard">Leaderboard</span></a>
+      <a class="nav-item" data-screen="events"><span>📅</span> <span data-i18n="events">Events</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title" data-i18n="social">JAMII</div>
+      <a class="nav-item" data-screen="chat"><span>💬</span> <span data-i18n="chat">Chati</span></a>
+      <a class="nav-item" data-screen="friends"><span>👥</span> <span data-i18n="friends">Marafiki</span></a>
+      <a class="nav-item" data-screen="clan"><span>🏰</span> <span data-i18n="clans">Clans</span></a>
+      <a class="nav-item" data-screen="live"><span>📺</span> <span data-i18n="liveStream">Live</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title" data-i18n="store">DUKA & MALIPO</div>
+      <a class="nav-item" data-screen="shop"><span>🛒</span> <span data-i18n="shop">Duka</span></a>
+      <a class="nav-item" data-screen="wallet"><span>💰</span> <span data-i18n="wallet">Wallet</span></a>
+      <a class="nav-item" data-screen="cart"><span>🛍️</span> <span data-i18n="cart">Kikapu</span> <span class="cart-count" id="cartCount" style="display:none;">0</span></a>
+      <a class="nav-item" data-screen="history"><span>🧾</span> <span data-i18n="history">Historia</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title" data-i18n="more">ZAIDI</div>
+      <a class="nav-item" data-screen="rewards"><span>🎁</span> <span data-i18n="dailyRewards">Zawadi za Siku</span></a>
+      <a class="nav-item" data-screen="missions"><span>🎯</span> <span data-i18n="missions">Missions</span></a>
+      <a class="nav-item" data-screen="seasonpass"><span>🏅</span> <span data-i18n="seasonPass">Season Pass</span></a>
+      <a class="nav-item" data-screen="achievements"><span>🎖️</span> <span data-i18n="achievements">Mafanikio</span></a>
+      <a class="nav-item" data-screen="news"><span>📰</span> <span data-i18n="news">Habari</span></a>
+      <a class="nav-item" data-screen="poll"><span>🗳️</span> <span data-i18n="poll">Kura</span></a>
+      <a class="nav-item" data-screen="funbot"><span>🤖</span> FunBot AI</a>
+      <a class="nav-item" data-screen="tutorials"><span>📚</span> <span data-i18n="tutorials">Mafunzo</span></a>
+      <a class="nav-item" data-screen="support"><span>📞</span> <span data-i18n="support">Msaada</span></a>
+      <a class="nav-item" data-screen="profile"><span>👤</span> <span data-i18n="profile">Profile</span></a>
+      <a class="nav-item" data-screen="settings"><span>⚙️</span> <span data-i18n="settings">Mipangilio</span></a>
+    </div>
+
+    <a class="nav-item admin-link" data-screen="admin" id="adminNavLink" style="display:none;">
+      <span>🛡️</span> <span data-i18n="adminPanel">Admin Panel</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="nav-item" id="loginBtnSide"><span>🔑</span> <span data-i18n="login">Ingia</span></button>
+  </div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<!-- ============ MAIN ============ -->
+<main class="app-main">
+
+<!-- ========== HOME ========== -->
+<section class="screen active" id="screen-home">
+  <div class="hero">
+    <h2 data-i18n="welcomeBack">Karibu tena! 🎮</h2>
+    <p class="muted" data-i18n="heroSub">Chagua mchezo wako, cheza na ushinde zawadi!</p>
+    <div class="hero-actions">
+      <button class="btn primary" data-screen="multiplayer">🎮 <span data-i18n="playNow">Cheza Sasa</span></button>
+      <button class="btn" data-screen="rewards">🎁 <span data-i18n="claimRewards">Chukua Zawadi</span></button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h3 data-i18n="featuredGames">🎯 Games Maarufu</h3>
+  </div>
+  <div class="featured-scroll" id="featuredScroll"></div>
+
+  <div class="section-title">
+    <h3 data-i18n="trendingGames">🔥 Trending Sasa</h3>
+  </div>
+  <div class="featured-scroll" id="trendingScroll"></div>
+
+  <div class="filters">
+    <button class="chip active" data-filter="all" data-i18n="all">Zote</button>
+    <button class="chip" data-filter="bure" data-i18n="free">Bure</button>
+    <button class="chip" data-filter="kulipia" data-i18n="paid">Kulipia</button>
+    <button class="chip" data-filter="offline">Offline</button>
+    <button class="chip" data-filter="online">Online</button>
+    <button class="chip" data-filter="action">Action</button>
+    <button class="chip" data-filter="racing">Racing</button>
+    <button class="chip" data-filter="sports">Sports</button>
+  </div>
+
+  <div class="games-grid" id="gamesGrid">
+    <p class="muted center" data-i18n="loadingGames">Inapakia games...</p>
+  </div>
+</section>
+
+<!-- ========== GAME DETAIL ========== -->
+<section class="screen" id="screen-gameDetail">
+  <button class="back-btn" data-back>←</button>
+  <div id="gameDetailContent"></div>
+</section>
+
+<!-- ========== MULTIPLAYER ========== -->
+<section class="screen" id="screen-multiplayer">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🎮 <span data-i18n="multiplayer">Multiplayer</span></h2>
+    <p class="muted" data-i18n="mpSub">Cheza na marafiki kwa wakati mmoja</p>
+  </div>
+
+  <div class="card">
+    <h4 data-i18n="createRoom">Unda Chumba Kipya</h4>
+    <select id="mpGameSelect">
+      <option value="tictactoe">❌⭕ Tic-Tac-Toe</option>
+      <option value="chess">♟️ Chess</option>
+      <option value="rps">✊✋✌️ Rock Paper Scissors</option>
+      <option value="quiz">🧠 Quiz Battle</option>
+      <option value="memory">🃏 Memory Match</option>
+    </select>
+    <input id="mpPlayerName" placeholder="Jina lako...">
+    <button class="btn primary" id="createRoomBtn" data-i18n="createRoom">Unda Chumba</button>
+  </div>
+
+  <div class="card">
+    <h4 data-i18n="joinRoom">Jiunge na Chumba</h4>
+    <input id="mpRoomCode" placeholder="Weka room code (mfano: MUMBI-1234)">
+    <input id="mpJoinName" placeholder="Jina lako...">
+    <button class="btn primary" id="joinRoomBtn" data-i18n="joinRoom">Jiunge</button>
+  </div>
+
+  <div id="mpActiveRoom" style="display:none;">
+    <div class="card room-card">
+      <div class="room-header">
+        <div>
+          <div class="muted small">Room Code</div>
+          <div class="room-code" id="roomCodeDisplay">KANYO-0000</div>
+        </div>
+        <button class="btn danger small" id="leaveRoomBtn" data-i18n="leaveRoom">Ondoka</button>
+      </div>
+      <div class="players-list" id="playersList"></div>
+      <div class="chat-messages small" id="roomChat"></div>
+      <div class="chat-input-row">
+        <input id="roomChatInput" placeholder="Ujumbe wa chumba...">
+        <button class="btn primary" id="sendRoomChat">Tuma</button>
+      </div>
+      <button class="btn primary big" id="startGameBtn" data-i18n="startGame">Anza Mchezo</button>
+    </div>
+    <div id="gameArena"></div>
+  </div>
+</section>
+
+<!-- ========== TOURNAMENT ========== -->
+<section class="screen" id="screen-tournament">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🏆 <span data-i18n="tournaments">Tournaments</span></h2>
+    <p class="muted" data-i18n="tourSub">Unda ligi yako, alika marafiki</p>
+  </div>
+
+  <div class="card">
+    <h4 data-i18n="createTournament">Unda Tournament</h4>
+    <input id="tourName" placeholder="Jina la Tournament">
+    <input id="tourGame" placeholder="Mchezo (FIFA, PUBG, NFS)">
+    <input id="tourPlayers" type="number" placeholder="Idadi ya wachezaji" min="2" max="64">
+    <input id="tourFee" type="number" placeholder="Entry fee (TSh) - 0 kama bure">
+    <input id="tourPrize" type="number" placeholder="Prize pool (TSh)">
+    <button class="btn primary" id="createTourBtn" data-i18n="createTournament">Unda Tournament</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tour-tab="active" data-i18n="active">Zinazoendelea</button>
+    <button class="tab" data-tour-tab="upcoming" data-i18n="upcoming">Zinazokuja</button>
+    <button class="tab" data-tour-tab="finished" data-i18n="finished">Zilizokwisha</button>
+  </div>
+  <div id="tourList"></div>
+</section>
+
+<!-- ========== LEADERBOARD ========== -->
+<section class="screen" id="screen-leaderboard">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📊 <span data-i18n="leaderboard">Leaderboard</span></h2>
+    <p class="muted" data-i18n="lbSub">Wachezaji bora wa wiki</p>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-lb="weekly" data-i18n="weekly">Wiki</button>
+    <button class="tab" data-lb="monthly" data-i18n="monthly">Mwezi</button>
+    <button class="tab" data-lb="alltime" data-i18n="allTime">Zote</button>
+  </div>
+  <div id="leaderboardArea"></div>
+</section>
+
+<!-- ========== EVENTS ========== -->
+<section class="screen" id="screen-events">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📅 <span data-i18n="events">Events</span></h2>
+    <p class="muted" data-i18n="eventsSub">Matukio maalum ya games</p>
+  </div>
+  <div id="eventsArea"></div>
+</section>
+
+<!-- ========== CHAT ========== -->
+<section class="screen" id="screen-chat">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>💬 <span data-i18n="chatTitle">Jumuiya ya Kanyo gaming</span></h2>
+    <p class="muted" data-i18n="chatSub">Chati ya wachezaji wote</p>
+  </div>
+  <div id="chatJoin">
+    <h3 data-i18n="joinChat">Jiunge na Chati</h3>
+    <p class="muted" data-i18n="joinChatSub">Weka jina utakalotumia kuchati</p>
+    <input id="chatName" placeholder="Jina lako..." maxlength="20">
+    <button class="btn primary" id="joinChatBtn" data-i18n="join">Jiunge</button>
+  </div>
+  <div id="chatRoom" style="display:none;">
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-row">
+      <input id="chatInput" placeholder="Andika ujumbe...">
+      <button class="btn primary" id="sendChatBtn" data-i18n="send">Tuma</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FRIENDS ========== -->
+<section class="screen" id="screen-friends">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>👥 <span data-i18n="friends">Marafiki</span></h2>
+    <p class="muted" data-i18n="friendsSub">Ongeza na uone marafiki wako</p>
+  </div>
+  <div class="card">
+    <input id="friendName" placeholder="Jina la rafiki...">
+    <button class="btn primary" id="addFriendBtn" data-i18n="addFriend">Ongeza Rafiki</button>
+  </div>
+  <div id="friendsList"></div>
+</section>
+
+<!-- ========== CLAN ========== -->
+<section class="screen" id="screen-clan">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🏰 <span data-i18n="clans">Clans</span></h2>
+    <p class="muted" data-i18n="clanSub">Jiunge au unda clan yako</p>
+  </div>
+  <div class="card">
+    <h4 data-i18n="createClan">Unda Clan</h4>
+    <input id="clanName" placeholder="Jina la clan...">
+    <input id="clanTag" placeholder="Tag (mfano: MMB)" maxlength="4">
+    <button class="btn primary" id="createClanBtn" data-i18n="createClan">Unda Clan</button>
+  </div>
+  <div id="clansList"></div>
+</section>
+
+<!-- ========== LIVE STREAM ========== -->
+<section class="screen" id="screen-live">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📺 <span data-i18n="liveStream">Live Streams</span></h2>
+    <p class="muted" data-i18n="liveSub">Angalia wachezaji live</p>
+  </div>
+  <div class="live-grid" id="liveGrid"></div>
+</section>
+
+<!-- ========== SHOP ========== -->
+<section class="screen" id="screen-shop">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🛒 <span data-i18n="shopTitle">Duka la Wachezaji</span></h2>
+    <p class="muted" data-i18n="shopSub">Vifaa vya games — vilivyothibitishwa na admin</p>
+  </div>
+  <div class="safety-note">
+    🛡️ <strong data-i18n="safety">Ulinzi wa Duka:</strong>
+    <span data-i18n="safetyText">Kila bidhaa hukaguliwa na admin kabla haijaonekana hadharani. Ukibonyeza "Nunua", utapelekwa WhatsApp kuongea na muuzaji. Kuwa makini kabla ya kulipa. Ukiona utapeli, bonyeza "Ripoti".</span>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-shop-tab="view" data-i18n="viewProducts">Tazama Bidhaa</button>
+    <button class="tab" data-shop-tab="add" data-i18n="addProduct">Weka Bidhaa</button>
+  </div>
+  <div id="shopView">
+    <div class="shop-grid" id="shopGrid"></div>
+  </div>
+  <div id="shopAdd" style="display:none;">
+    <input id="prodName" placeholder="Jina la bidhaa">
+    <input id="prodPrice" type="number" placeholder="Bei (TSh)">
+    <input id="prodSeller" placeholder="Jina la muuzaji">
+    <input id="prodPhone" placeholder="Namba ya WhatsApp (255712345678)">
+    <input id="prodImg" placeholder="Link ya picha (URL)">
+    <textarea id="prodDesc" placeholder="Maelezo mafupi..."></textarea>
+    <button class="btn primary" id="addProductBtn" data-i18n="addProduct">Weka Bidhaa</button>
+  </div>
+</section>
+
+<!-- ========== WALLET ========== -->
+<section class="screen" id="screen-wallet">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>💰 <span data-i18n="wallet">Wallet Yangu</span></h2>
+    <p class="muted" data-i18n="walletSub">Salio na miamala yako</p>
+  </div>
+  <div class="wallet-card">
+    <div class="wallet-balance">
+      <div class="muted small" data-i18n="balance">Salio</div>
+      <div class="balance-amount" id="walletBalanceFull">TSh 0</div>
+    </div>
+    <div class="wallet-actions">
+      <button class="btn primary" id="depositBtn">➕ <span data-i18n="deposit">Weka Pesa</span></button>
+      <button class="btn" id="withdrawBtn">➖ <span data-i18n="withdraw">Toa Pesa</span></button>
+    </div>
+  </div>
+  <div class="card">
+    <h4>💎 Gems</h4>
+    <div class="row">
+      <div class="gems-pill">💎 <span id="gemsFull">0</span></div>
+      <button class="btn primary small" id="buyGemsBtn" data-i18n="buyGems">Nunua Gems</button>
+    </div>
+  </div>
+  <div class="section-title">
+    <h3 data-i18n="transactions">🧾 Miamala ya Hivi Karibuni</h3>
+  </div>
+  <div id="walletHistory"></div>
+</section>
+
+<!-- ========== CART ========== -->
+<section class="screen" id="screen-cart">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🛍️ <span data-i18n="cart">Kikapu Changu</span></h2>
+  </div>
+  <div id="cartArea"></div>
+</section>
+
+<!-- ========== CHECKOUT ========== -->
+<section class="screen" id="screen-checkout">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>💳 <span data-i18n="checkout">Maliza Malipo</span></h2>
+  </div>
+  <div class="card">
+    <h4 data-i18n="paymentMethod">Chagua Njia ya Malipo</h4>
+    <div class="payment-methods">
+      <label class="pay-option"><input type="radio" name="payMethod" value="mpesa" checked><span>📱 M-Pesa</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="tigo"><span>📱 Tigo Pesa</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="airtel"><span>📱 Airtel Money</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="halo"><span>📱 Halopesa</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="card"><span>💳 Kadi</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="paypal"><span>🅿️ PayPal</span></label>
+      <label class="pay-option"><input type="radio" name="payMethod" value="crypto"><span>₿ Crypto</span></label>
+    </div>
+    <div id="payDetails">
+      <input id="payPhone" type="tel" placeholder="Namba ya simu (255712345678)">
+    </div>
+    <div class="promo-row">
+      <input id="promoCode" placeholder="Promo code (mfano: MUMBI50)">
+      <button class="btn" id="applyPromo" data-i18n="apply">Tumia</button>
+    </div>
+    <div class="checkout-total">
+      <span data-i18n="total">JUMLA:</span>
+      <span class="total-amount" id="checkoutTotal">TSh 0</span>
+    </div>
+    <button class="btn primary big" id="payNowBtn" data-i18n="payNow">Lipa Sasa</button>
+  </div>
+</section>
+
+<!-- ========== RECEIPT ========== -->
+<section class="screen" id="screen-receipt">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🧾 <span data-i18n="receipt">Risiti</span></h2>
+  </div>
+  <div class="receipt" id="receiptContent"></div>
+</section>
+
+<!-- ========== HISTORY ========== -->
+<section class="screen" id="screen-history">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🧾 <span data-i18n="history">Historia ya Malipo</span></h2>
+  </div>
+  <div id="historyArea"></div>
+</section>
+
+<!-- ========== DAILY REWARDS ========== -->
+<section class="screen" id="screen-rewards">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🎁 <span data-i18n="dailyRewards">Zawadi za Kila Siku</span></h2>
+    <p class="muted" data-i18n="rewardsSub">Ingia kila siku upate zawadi</p>
+  </div>
+  <div class="reward-streak" id="rewardStreak"></div>
+  <div class="spin-wheel-area">
+    <h3 data-i18n="spinWheel">🎡 Gurudumu la Bahati</h3>
+    <div class="spin-wheel" id="spinWheel">
+      <div class="wheel-pointer">▼</div>
+      <div class="wheel" id="wheelItems"></div>
+    </div>
+    <button class="btn primary big" id="spinBtn" data-i18n="spin">Zungusha!</button>
+  </div>
+  <div class="mystery-box-area">
+    <h3 data-i18n="mysteryBox">📦 Sanduku la Siri</h3>
+    <div class="mystery-box" id="mysteryBox">🎁</div>
+    <button class="btn primary" id="openBoxBtn" data-i18n="openBox">Fungua Sanduku</button>
+  </div>
+</section>
+
+<!-- ========== MISSIONS ========== -->
+<section class="screen" id="screen-missions">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🎯 <span data-i18n="missions">Missions</span></h2>
+    <p class="muted" data-i18n="missionsSub">Kamilisha missions upate zawadi</p>
+  </div>
+  <div id="missionsArea"></div>
+</section>
+
+<!-- ========== SEASON PASS ========== -->
+<section class="screen" id="screen-seasonpass">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🏅 <span data-i18n="seasonPass">Season Pass</span></h2>
+    <p class="muted" data-i18n="seasonSub">Season 1 - Mwezi huu</p>
+  </div>
+  <div class="season-progress">
+    <div class="progress-bar"><div class="progress-fill" id="seasonProgress" style="width:0%"></div></div>
+    <div class="muted small">Level <span id="seasonLevel">1</span> / 50</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-season="free" data-i18n="freeTrack">Bure</button>
+    <button class="tab" data-season="premium">💎 Premium</button>
+  </div>
+  <div id="seasonRewards"></div>
+</section>
+
+<!-- ========== ACHIEVEMENTS ========== -->
+<section class="screen" id="screen-achievements">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🎖️ <span data-i18n="achievements">Mafanikio</span></h2>
+    <p class="muted" data-i18n="achSub">Beji zako za michezo</p>
+  </div>
+  <div id="achievementsArea"></div>
+</section>
+
+<!-- ========== NEWS ========== -->
+<section class="screen" id="screen-news">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📰 <span data-i18n="news">Habari</span></h2>
+  </div>
+  <div id="newsArea"></div>
+</section>
+
+<!-- ========== POLL ========== -->
+<section class="screen" id="screen-poll">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🗳️ <span data-i18n="poll">Kura</span></h2>
+    <p class="muted" data-i18n="pollSub">Piga kura, ona matokeo</p>
+  </div>
+  <div id="pollArea"><p class="muted center" data-i18n="loadingPolls">Inapakia kura...</p></div>
+</section>
+
+<!-- ========== FUNBOT ========== -->
+<section class="screen" id="screen-funbot">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🤖 FunBot ✨</h2>
+    <p class="muted">Msaidizi wako • <span class="online">Online</span></p>
+  </div>
+  <div class="chat-messages" id="botMessages"></div>
+  <div class="chat-input-row">
+    <input id="botInput" placeholder="Uliza FunBot kitu...">
+    <button class="btn primary" id="botSendBtn" data-i18n="send">Tuma</button>
+  </div>
+</section>
+
+<!-- ========== TUTORIALS ========== -->
+<section class="screen" id="screen-tutorials">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📚 <span data-i18n="tutorials">Mafunzo</span></h2>
+  </div>
+  <div id="tutorialsArea"></div>
+</section>
+
+<!-- ========== SUPPORT ========== -->
+<section class="screen" id="screen-support">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>📞 <span data-i18n="support">Msaada</span></h2>
+  </div>
+  <div class="card">
+    <input id="ticketSubject" placeholder="Kichwa cha tatizo">
+    <textarea id="ticketMsg" placeholder="Eleza tatizo lako..."></textarea>
+    <button class="btn primary" id="submitTicket" data-i18n="submit">Tuma Ticket</button>
+  </div>
+  <div class="card">
+    <h4>❓ FAQ</h4>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Jinsi ya kununua game? ▾</div>
+      <div class="faq-a">Bonyeza "Nunua" kisha chagua njia ya malipo kama M-Pesa au Tigo Pesa.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Jinsi ya kujiunga na tournament? ▾</div>
+      <div class="faq-a">Nenda kwenye Tournaments, chagua tournament, kisha bonyeza "Jiunge".</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Ninalipaje kwa mobile money? ▾</div>
+      <div class="faq-a">Chagua mtandao wako, weka namba ya simu, na thibitisha malipo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROFILE ========== -->
+<section class="screen" id="screen-profile">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>👤 <span data-i18n="profileTitle">Profile Yangu</span></h2>
+  </div>
+  <div class="card">
+    <div class="profile-head">
+      <div class="avatar big" id="profileAvatar">🎮</div>
+      <div>
+        <h3 id="profileName">Mgeni</h3>
+        <p class="muted" id="profileEmail">Hauna akaunti bado</p>
+        <div class="profile-stats">
+          <span>🏆 <span id="profileWins">0</span></span>
+          <span>🎮 <span id="profileGames">0</span></span>
+          <span>⭐ <span id="profileXP">0</span></span>
+        </div>
+      </div>
+    </div>
+    <button class="btn primary" id="openAccountBtn" data-i18n="openAccount">Fungua Akaunti</button>
+    <p class="muted center">Tayari una akaunti? <a href="#" id="loginLink" data-i18n="loginHere">Ingia hapa</a></p>
+    <button class="btn danger" id="logoutBtn" style="display:none;" data-i18n="logout">Toka</button>
+  </div>
+  <div class="card">
+    <h4>📦 <span data-i18n="myGames">Games Zangu</span></h4>
+    <div id="myGames"></div>
+  </div>
+</section>
+
+<!-- ========== SETTINGS ========== -->
+<section class="screen" id="screen-settings">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>⚙️ <span data-i18n="settings">Mipangilio</span></h2>
+  </div>
+  <div class="card">
+    <h4 data-i18n="theme">🎨 Mwonekano</h4>
+    <div class="row">
+      <button class="chip" data-theme="dark" data-i18n="dark">Giza</button>
+      <button class="chip" data-theme="light" data-i18n="light">Mwanga</button>
+    </div>
+  </div>
+  <div class="card">
+    <h4 data-i18n="language">🌍 Lugha</h4>
+    <select id="langSelect">
+      <option value="sw">🇹🇿 Kiswahili</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ar">🇸🇦 العربية</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="pt">🇵🇹 Português</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+  </div>
+  <div class="card">
+    <h4 data-i18n="notifications">🔔 Notifications</h4>
+    <label class="switch-row">
+      <span data-i18n="enableNotif">Washa notifications</span>
+      <input type="checkbox" id="notifToggle" checked>
+    </label>
+    <label class="switch-row">
+      <span data-i18n="soundNotif">Sauti</span>
+      <input type="checkbox" id="soundToggle" checked>
+    </label>
+  </div>
+  <div class="card">
+    <h4>🧹 <span data-i18n="clearCache">Futa Cache</span></h4>
+    <button class="btn danger" id="clearCacheBtn" data-i18n="clearCache">Futa Cache</button>
+  </div>
+  <div class="card">
+    <h4>📤 <span data-i18n="share">Shea na Marafiki</span></h4>
+    <button class="btn primary" id="shareBtn" data-i18n="share">Shea</button>
+  </div>
+  <div class="card">
+    <h4>📱 <span data-i18n="installApp">Install App</span></h4>
+    <button class="btn primary" id="installBtn" data-i18n="install">Install Kanyogames</button>
+  </div>
+</section>
+
+<!-- ========== ADMIN PANEL ========== -->
+<section class="screen" id="screen-admin">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🛡️ Admin Panel</h2>
+    <p class="muted">Karibu Admin • <span id="adminEmail">-</span></p>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-admin-tab="post" data-i18n="postGame">Post Game</button>
+    <button class="tab" data-admin-tab="manage" data-i18n="manage">Manage</button>
+    <button class="tab" data-admin-tab="users" data-i18n="users">Watumiaji</button>
+    <button class="tab" data-admin-tab="stats" data-i18n="stats">Takwimu</button>
+    <button class="tab" data-admin-tab="notify">🔔 Tuma Taarifa</button>
+  </div>
+
+  <div id="adminPost">
+    <div class="card">
+      <h4>➕ Ongeza Mchezo Mpya</h4>
+      <input id="gName" placeholder="Jina la mchezo *">
+      <input id="gLink" placeholder="Link ya mchezo (URL) *">
+      <input id="gImg" placeholder="Link ya picha (URL)">
+      <textarea id="gDesc" placeholder="Maelezo ya mchezo..."></textarea>
+      <input id="gCategory" placeholder="Aina (Action, Sports, Racing...)">
+      <select id="gType">
+        <option value="bure">Bure</option>
+        <option value="kulipia">Kulipia</option>
+        <option value="offline">Offline</option>
+        <option value="online">Online</option>
+      </select>
+      <input id="gPrice" type="number" placeholder="Bei (TSh) - kama kulipia">
+      <input id="gRating" type="number" placeholder="Rating (1-5)" min="1" max="5" step="0.1">
+      <button class="btn primary" id="postGameBtn">Post Game</button>
+      <p class="muted small" id="postMsg"></p>
+    </div>
+  </div>
+
+  <div id="adminManage" style="display:none;">
+    <div id="adminGamesList"></div>
+  </div>
+
+  <div id="adminUsers" style="display:none;">
+    <div id="adminUsersList"></div>
+  </div>
+
+  <div id="adminStats" style="display:none;">
+    <div class="stats-grid" id="statsGrid"></div>
+  </div>
+
+  <div id="adminNotify" style="display:none;">
+    <div class="card">
+      <h4>🔔 Tuma Taarifa kwa Wote</h4>
+      <input id="notifTitle" placeholder="Kichwa cha taarifa">
+      <textarea id="notifMsg" placeholder="Maelezo..."></textarea>
+      <button class="btn primary" id="sendGlobalNotif">Tuma kwa Wote</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOGIN ========== -->
+<section class="screen" id="screen-login">
+  <button class="back-btn" data-back>←</button>
+  <div class="screen-head">
+    <h2>🔑 <span data-i18n="loginTitle">Ingia</span></h2>
+  </div>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" data-auth="login" data-i18n="login">Ingia</button>
+      <button class="tab" data-auth="register" data-i18n="register">Jisajili</button>
+    </div>
+    <input id="loginEmail" type="email" placeholder="Email">
+    <input id="loginPass" type="password" placeholder="Password">
+    <input id="loginName" type="text" placeholder="Jina lako" style="display:none;">
+    <button class="btn primary" id="doLoginBtn" data-i18n="login">Ingia</button>
+    <p class="muted small" id="loginMsg"></p>
+    <hr>
+    <p class="muted small">Admin: kalimuhalfan45@gmail.com / KALI123</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ NOTIFICATIONS PANEL ============ -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-header">
+    <h3>🔔 <span data-i18n="notifications">Taarifa</span></h3>
+    <div>
+      <button class="btn small" id="markAllRead" data-i18n="markAllRead">Soma zote</button>
+      <button class="icon-btn small" id="closeNotif">✕</button>
+    </div>
+  </div>
+  <div class="notif-list" id="notifList"></div>
+</div>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input id="searchInput" placeholder="Tafuta mchezo...">
+    <button class="btn" id="closeSearch">✕</button>
+  </div>
+  <div id="searchResults"></div>
+</div>
+
+<!-- ============ PAYMENT MODAL ============ -->
+<div class="modal" id="payModal">
+  <div class="modal-content">
+    <h3>💳 <span data-i18n="processing">Inachakata Malipo...</span></h3>
+    <div class="spinner"></div>
+    <p class="muted" id="payStatus">Tafadhali subiri...</p>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<!-- ============ MUSIC PLAYER ============ -->
+<div class="music-player" id="musicPlayer">
+  <button class="icon-btn" id="musicToggle">⏸️</button>
+  <div class="music-info">
+    <div class="music-title" id="musicTitle">KANYO GAMIMG Theme</div>
+    <div class="music-artist muted small">Lofi Gaming Beat</div>
+  </div>
+</div>
+<audio id="bgMusic" loop></audio>
+
+<script >
+    /* ============================================================
+   mumbigames - Full Application Logic
+   Version 2.0 | Admin | Multiplayer | Payments | i18n
+   Admin: kalimuhalfan45@gmail.com | KALI123
+   ============================================================ */
+
+'use strict';
+
+/* ============ CONFIG ============ */
+const CONFIG = {
+  ADMIN_EMAIL: "kalimuhalfan45@gmail.com",
+  ADMIN_PASS: "KALI123",
+  APP_URL: location.href.split('?')[0],
+  VERSION: "2.0.0",
+  CURRENCY: "TSh",
+  CASHBACK: 0.05,
+  XP_PER_LEVEL: 100
+};
+
+/* ============ STORAGE HELPERS ============ */
+const S = {
+  get:(k,d)=>{ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch{ return d; } },
+  set:(k,v)=> localStorage.setItem(k, JSON.stringify(v)),
+  del:(k)=> localStorage.removeItem(k),
+  clear:()=>{ /* preserve user session on clear */ }
+};
+
+/* ============ STATE ============ */
+const State = {
+  user: S.get('Kanyo_user', null),
+  isAdmin: S.get('Kanyo_admin', false),
+  currentFilter: 'all',
+  currentScreen: 'home',
+  cart: S.get('mumbi_cart', []),
+  wallet: S.get('Kanyo_wallet', { balance: 0, gems: 0, xp: 0 }),
+  notifications: S.get('Kanyo_notifs', []),
+  room: null,
+  lang: S.get('Kanyo_lang', 'sw'),
+  theme: S.get('Kanyo_theme', 'dark')
+};
+
+/* ============ I18N TRANSLATIONS ============ */
+const I18N = {
+  sw:{
+    appName:"KANYO PRO GAMIMG", home:"Nyumbani", multiplayer:"Multiplayer",
+    tournaments:"Tournaments", leaderboard:"Leaderboard", events:"Events",
+    chat:"Chati", friends:"Marafiki", clans:"Clans", liveStream:"Live",
+    shop:"Duka", wallet:"Wallet", cart:"Kikapu", history:"Historia",
+    rewards:"Zawadi", missions:"Missions", seasonPass:"Season Pass",
+    achievements:"Mafanikio", news:"Habari", poll:"Kura",
+    tutorials:"Mafunzo", support:"Msaada", profile:"Profile",
+    settings:"Mipangilio", adminPanel:"Admin Panel", login:"Ingia",
+    register:"Jisajili", logout:"Toka", mainMenu:"MENYU KUU",
+    social:"JAMII", store:"DUKA & MALIPO", more:"ZAIDI",
+    welcomeBack:"Karibu tena! 🎮", heroSub:"Chagua mchezo wako, cheza na ushinde zawadi!",
+    playNow:"Cheza Sasa", claimRewards:"Chukua Zawadi",
+    featuredGames:"🎯 Games Maarufu", trendingGames:"🔥 Trending Sasa",
+    all:"Zote", free:"Bure", paid:"Kulipia", loadingGames:"Inapakia games...",
+    createRoom:"Unda Chumba", joinRoom:"Jiunge na Chumba",
+    leaveRoom:"Ondoka", startGame:"Anza Mchezo",
+    createTournament:"Unda Tournament", active:"Zinazoendelea",
+    upcoming:"Zinazokuja", finished:"Zilizokwisha",
+    weekly:"Wiki", monthly:"Mwezi", allTime:"Zote",
+    joinChat:"Jiunge na Chati", joinChatSub:"Weka jina utakalotumia kuchati",
+    join:"Jiunge", send:"Tuma", addFriend:"Ongeza Rafiki",
+    createClan:"Unda Clan", liveSub:"Angalia wachezaji live",
+    shopTitle:"Duka la Wachezaji", shopSub:"Vifaa vya games",
+    viewProducts:"Tazama Bidhaa", addProduct:"Weka Bidhaa",
+    balance:"Salio", deposit:"Weka Pesa", withdraw:"Toa Pesa",
+    buyGems:"Nunua Gems", transactions:"🧾 Miamala ya Hivi Karibuni",
+    checkout:"Maliza Malipo", paymentMethod:"Chagua Njia ya Malipo",
+    apply:"Tumia", total:"JUMLA:", payNow:"Lipa Sasa",
+    receipt:"Risiti", dailyRewards:"Zawadi za Kila Siku",
+    rewardsSub:"Ingia kila siku upate zawadi", spinWheel:"🎡 Gurudumu la Bahati",
+    spin:"Zungusha!", mysteryBox:"📦 Sanduku la Siri", openBox:"Fungua Sanduku",
+    missionsSub:"Kamilisha missions upate zawadi",
+    seasonSub:"Season 1 - Mwezi huu", freeTrack:"Bure",
+    achSub:"Beji zako za michezo", pollSub:"Piga kura, ona matokeo",
+    loadingPolls:"Inapakia kura...", submit:"Tuma Ticket",
+    profileTitle:"Profile Yangu", openAccount:"Fungua Akaunti",
+    loginHere:"Ingia hapa", myGames:"Games Zangu",
+    theme:"🎨 Mwonekano", dark:"Giza", light:"Mwanga",
+    language:"🌍 Lugha", notifications:"Taarifa",
+    enableNotif:"Washa notifications", soundNotif:"Sauti",
+    clearCache:"Futa Cache", share:"Shea", installApp:"Install App",
+    install:"Install Kanyogames", loginTitle:"Ingia",
+    markAllRead:"Soma zote", processing:"Inachakata Malipo...",
+    postGame:"Post Game", manage:"Manage", users:"Watumiaji",
+    stats:"Takwimu", tournament:"Tournament",
+    errorLogin:"Email au password si sahihi!",
+    errorAdmin:"Si admin halisi!",
+    successLogin:"Umeingia kikamilifu!",
+    successPost:"Mchezo umepostiwa!",
+    addedCart:"Imeongezwa kwenye kikapu!",
+    paid:"Malipo yamefanikiwa!"
+  },
+  en:{
+    appName:"mumbigames", home:"Home", multiplayer:"Multiplayer",
+    tournaments:"Tournaments", leaderboard:"Leaderboard", events:"Events",
+    chat:"Chat", friends:"Friends", clans:"Clans", liveStream:"Live",
+    shop:"Shop", wallet:"Wallet", cart:"Cart", history:"History",
+    rewards:"Rewards", missions:"Missions", seasonPass:"Season Pass",
+    achievements:"Achievements", news:"News", poll:"Poll",
+    tutorials:"Tutorials", support:"Support", profile:"Profile",
+    settings:"Settings", adminPanel:"Admin Panel", login:"Login",
+    register:"Register", logout:"Logout", mainMenu:"MAIN MENU",
+    social:"SOCIAL", store:"SHOP & PAYMENTS", more:"MORE",
+    welcomeBack:"Welcome back! 🎮", heroSub:"Pick your game, play and win rewards!",
+    playNow:"Play Now", claimRewards:"Claim Rewards",
+    featuredGames:"🎯 Featured Games", trendingGames:"🔥 Trending Now",
+    all:"All", free:"Free", paid:"Paid", loadingGames:"Loading games...",
+    createRoom:"Create Room", joinRoom:"Join Room",
+    leaveRoom:"Leave", startGame:"Start Game",
+    createTournament:"Create Tournament", active:"Active",
+    upcoming:"Upcoming", finished:"Finished",
+    weekly:"Weekly", monthly:"Monthly", allTime:"All Time",
+    joinChat:"Join Chat", joinChatSub:"Enter your chat name",
+    join:"Join", send:"Send", addFriend:"Add Friend",
+    createClan:"Create Clan", liveSub:"Watch players live",
+    shopTitle:"Players Shop", shopSub:"Game gear verified by admin",
+    viewProducts:"View Products", addProduct:"Add Product",
+    balance:"Balance", deposit:"Deposit", withdraw:"Withdraw",
+    buyGems:"Buy Gems", transactions:"🧾 Recent Transactions",
+    checkout:"Checkout", paymentMethod:"Choose Payment Method",
+    apply:"Apply", total:"TOTAL:", payNow:"Pay Now",
+    receipt:"Receipt", dailyRewards:"Daily Rewards",
+    rewardsSub:"Login daily to earn rewards", spinWheel:"🎡 Lucky Spin",
+    spin:"Spin!", mysteryBox:"📦 Mystery Box", openBox:"Open Box",
+    missionsSub:"Complete missions to earn rewards",
+    seasonSub:"Season 1 - This month", freeTrack:"Free",
+    achSub:"Your game badges", pollSub:"Vote and see results",
+    loadingPolls:"Loading polls...", submit:"Submit Ticket",
+    profileTitle:"My Profile", openAccount:"Open Account",
+    loginHere:"Login here", myGames:"My Games",
+    theme:"🎨 Theme", dark:"Dark", light:"Light",
+    language:"🌍 Language", notifications:"Notifications",
+    enableNotif:"Enable notifications", soundNotif:"Sound",
+    clearCache:"Clear Cache", share:"Share", installApp:"Install App",
+    install:"Install Kanyogames", loginTitle:"Login",
+    markAllRead:"Mark all read", processing:"Processing payment...",
+    postGame:"Post Game", manage:"Manage", users:"Users",
+    stats:"Stats", tournament:"Tournament",
+    errorLogin:"Invalid email or password!",
+    errorAdmin:"Not a real admin!",
+    successLogin:"Logged in successfully!",
+    successPost:"Game posted!",
+    addedCart:"Added to cart!",
+    paid:"Payment successful!"
+  },
+  fr:{
+    home:"Accueil", multiplayer:"Multijoueur", tournaments:"Tournois",
+    leaderboard:"Classement", chat:"Chat", friends:"Amis",
+    shop:"Boutique", wallet:"Portefeuille", profile:"Profil",
+    settings:"Paramètres", login:"Connexion", register:"S'inscrire",
+    welcomeBack:"Bon retour! 🎮", all:"Tout", free:"Gratuit",
+    paid:"Payant", send:"Envoyer", join:"Rejoindre"
+  },
+  ar:{
+    home:"الرئيسية", multiplayer:"متعدد اللاعبين", tournaments:"بطولات",
+    leaderboard:"لوحة الصدارة", chat:"دردشة", friends:"أصدقاء",
+    shop:"متجر", wallet:"محفظة", profile:"الملف الشخصي",
+    settings:"إعدادات", login:"تسجيل الدخول", register:"تسجيل",
+    welcomeBack:"مرحباً بعودتك! 🎮", all:"الكل", free:"مجاني",
+    paid:"مدفوع", send:"إرسال", join:"انضم"
+  },
+  es:{
+    home:"Inicio", multiplayer:"Multijugador", tournaments:"Torneos",
+    leaderboard:"Clasificación", chat:"Chat", friends:"Amigos",
+    shop:"Tienda", wallet:"Cartera", profile:"Perfil",
+    settings:"Ajustes", login:"Iniciar sesión", register:"Registrarse",
+    welcomeBack:"¡Bienvenido! 🎮", all:"Todos", free:"Gratis",
+    paid:"Pago", send:"Enviar", join:"Unirse"
+  },
+  pt:{
+    home:"Início", multiplayer:"Multijogador", tournaments:"Torneios",
+    leaderboard:"Classificação", chat:"Bate-papo", friends:"Amigos",
+    shop:"Loja", wallet:"Carteira", profile:"Perfil",
+    settings:"Configurações", login:"Entrar", register:"Registrar",
+    welcomeBack:"Bem-vindo de volta! 🎮", all:"Todos", free:"Grátis",
+    paid:"Pago", send:"Enviar", join:"Entrar"
+  },
+  zh:{
+    home:"主页", multiplayer:"多人游戏", tournaments:"锦标赛",
+    leaderboard:"排行榜", chat:"聊天", friends:"好友",
+    shop:"商店", wallet:"钱包", profile:"个人资料",
+    settings:"设置", login:"登录", register:"注册",
+    welcomeBack:"欢迎回来！🎮", all:"全部", free:"免费",
+    paid:"付费", send:"发送", join:"加入"
+  }
+};
+
+/* ============ i18n ============ */
+function t(key){
+  return (I18N[State.lang] && I18N[State.lang][key]) || I18N.sw[key] || key;
+}
+function applyLang(){
+  document.documentElement.lang = State.lang;
+  document.body.dataset.lang = State.lang;
+  if(State.lang === 'ar'){
+    document.body.classList.add('rtl');
+  } else {
+    document.body.classList.remove('rtl');
+  }
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    el.textContent = t(key);
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    el.placeholder = t(el.dataset.i18nPh);
+  });
+}
+
+/* ============ DEFAULT DATA ============ */
+const DEFAULT_GAMES = [
+  { id:'g1', name:'GTA V City', link:'https://www.rockstargames.com/gta-v', type:'kulipia', category:'action', price:45000, rating:4.9, featured:true, trending:true, desc:'Open world ya kusisimua Los Santos. Misheni, magari, na free-roam multiplayer.', img:'', icon:'🌆' },
+  { id:'g2', name:'Need for Speed: Most Wanted', link:'https://www.ea.com/games/need-for-speed', type:'kulipia', category:'racing', price:35000, rating:4.8, featured:true, trending:true, desc:'Mbio za mitaani, magari makali, na Cop Chase. Kuwa mwizi bora wa Rockport!', img:'', icon:'🏎️' },
+  { id:'g3', name:'FIFA 25', link:'https://www.ea.com/games/fifa', type:'kulipia', category:'sports', price:40000, rating:4.7, featured:true, trending:true, desc:'Mpira wa miguu wa kisasa, timu za dunia, na tournament za kusisimua.', img:'', icon:'⚽' },
+  { id:'g4', name:'PUBG Mobile', link:'https://www.pubgmobile.com', type:'bure', category:'action', price:0, rating:4.6, featured:true, trending:true, desc:'Battle royale ya watu 100. Squad na marafiki, weapons, na ramani kubwa.', img:'', icon:'🔫' },
+  { id:'g5', name:'Chess Master', link:'https://www.chess.com', type:'bure', category:'puzzle', price:0, rating:4.9, featured:true, trending:false, desc:'Mchezo wa chess wa kisasa. Multiplayer na AI wa viwango.', img:'', icon:'♟️' },
+  { id:'g6', name:'Tic-Tac-Toe Online', link:'#', type:'bure', category:'puzzle', price:0, rating:4.5, featured:false, trending:true, desc:'Mchezo rahisi wa X na O. Cheza na rafiki au AI.', img:'', icon:'❌' },
+  { id:'g7', name:'Memory Match', link:'#', type:'bure', category:'puzzle', price:0, rating:4.4, featured:false, trending:false, desc:'Pata jozi za kadi. Ongeza uwezo wa kumbukumbu.', img:'', icon:'🃏' },
+  { id:'g8', name:'Rock Paper Scissors', link:'#', type:'bure', category:'casual', price:0, rating:4.3, featured:false, trending:false, desc:'Mchezo wa bahati na akili. Jiwe, karatasi, mkasi!', img:'', icon:'✊' },
+  { id:'g9', name:'NBA 2K', link:'https://nba.2k.com', type:'kulipia', category:'sports', price:38000, rating:4.6, featured:true, trending:false, desc:'Basketball ya NBA, timu zote, na slam dunk contest.', img:'', icon:'🏀' },
+  { id:'g10', name:'Free Fire', link:'https://ff.garena.com', type:'bure', category:'action', price:0, rating:4.5, featured:true, trending:true, desc:'Battle royale ya haraka. Watu 50, ramani kubwa, weapons nyingi.', img:'', icon:'🔥' },
+  { id:'g11', name:'Asphalt 9', link:'https://www.gameloft.com/asphalt-9', type:'bure', category:'racing', price:0, rating:4.7, featured:false, trending:true, desc:'Mbio za magari ya kifahari. Magari 50+, tracks 60+.', img:'', icon:'🏁' },
+  { id:'g12', name:'Candy Crush', link:'https://www.king.com/game/candycrush', type:'bure', category:'puzzle', price:0, rating:4.4, featured:false, trending:false, desc:'Panga peremende, shinda levels. Mchezo wa watu wote.', img:'', icon:'🍬' },
+  { id:'g13', name:'Call of Duty Mobile', link:'https://www.callofduty.com/mobile', type:'bure', category:'action', price:0, rating:4.8, featured:true, trending:true, desc:'FPS ya kisasa. Multiplayer 5v5, battle royale, zombies.', img:'', icon:'🎯' },
+  { id:'g14', name:'Clash of Clans', link:'https://supercell.com/en/games/clashofclans', type:'bure', category:'strategy', price:0, rating:4.6, featured:false, trending:false, desc:'Jenga kijiji, unda jeshi, shambulia maadui.', img:'', icon:'🏰' },
+  { id:'g15', name:'Minecraft', link:'https://www.minecraft.net', type:'kulipia', category:'sandbox', price:25000, rating:4.9, featured:true, trending:true, desc:'Dunia ya kubuni. Jenga, chunguza, na uishi.', img:'', icon:'⛏️' }
+];
+
+const DEFAULT_PRODUCTS = [
+  { id:'p1', name:'PS5 Controller', price:150000, seller:'GameStore TZ', phone:'255712345678', desc:'Controller ya PlayStation 5, mpya kabisa.', img:'' },
+  { id:'p2', name:'Gaming Headset', price:85000, seller:'TechHub', phone:'255713456789', desc:'Headset ya gaming yenye microphone.', img:'' },
+  { id:'p3', name:'Gaming Mouse', price:45000, seller:'ProGamer', phone:'255714567890', desc:'Mouse ya gaming yenye RGB.', img:'' }
+];
+
+const DEFAULT_POLLS = [
+  { id:'poll1', q:'Mchezo upi unapenda zaidi?', options:[
+    { text:'GTA V', votes:42 }, { text:'FIFA 25', votes:38 },
+    { text:'PUBG', votes:25 }, { text:'Free Fire', votes:31 }
+  ], voted:null },
+  { id:'poll2', q:'Unacheza michezo ipi hasa?', options:[
+    { text:'Racing', votes:30 }, { text:'Action', votes:45 },
+    { text:'Sports', votes:28 }, { text:'Puzzle', votes:15 }
+  ], voted:null }
+];
+
+const DEFAULT_NEWS = [
+  { id:'n1', title:'GTA VI inakuja 2026!', date:'2026-01-15', body:'Rockstar Games wametangaza kwamba GTA VI itatolewa mwaka 2026. Wachezaji wengi wanasubiri kwa hamu.' },
+  { id:'n2', title:'FIFA 26 itakuwa na AI ya kisasa', date:'2026-01-10', body:'EA Sports wanaandaa FIFA 26 yenye teknolojia ya AI inayofanya wachezaji wa kompyuta kuwa smart zaidi.' },
+  { id:'n3', title:'Tournament kubwa ya mumbigames', date:'2026-01-08', body:'Tunakaribisha wachezaji wote kwenye tournament kubwa ya PUBG. Prize pool ni TSh 500,000!' }
+];
+
+const DEFAULT_ACHIEVEMENTS = [
+  { id:'a1', name:'Mwanzo Mzuri', icon:'🌟', desc:'Cheza game yako ya kwanza', unlocked:false },
+  { id:'a2', name:'Mshindi', icon:'🏆', desc:'Shinda game 10', unlocked:false },
+  { id:'a3', name:'Mtaalam', icon:'👑', desc:'Fikia level 20', unlocked:false },
+  { id:'a4', name:'Marafiki Wengi', icon:'👥', desc:'Pata marafiki 5', unlocked:false },
+  { id:'a5', name:'Mnunuzi', icon:'🛒', desc:'Nunua bidhaa 3', unlocked:false },
+  { id:'a6', name:'Chat Master', icon:'💬', desc:'Tuma ujumbe 50', unlocked:false }
+];
+
+/* ============ INITIALIZE STORAGE ============ */
+if(!localStorage.getItem('mumbi_games')) S.set('mumbi_games', DEFAULT_GAMES);
+if(!localStorage.getItem('mumbi_products')) S.set('mumbi_products', DEFAULT_PRODUCTS);
+if(!localStorage.getItem('mumbi_polls')) S.set('mumbi_polls', DEFAULT_POLLS);
+if(!localStorage.getItem('mumbi_news')) S.set('mumbi_news', DEFAULT_NEWS);
+if(!localStorage.getItem('mumbi_achievements')) S.set('mumbi_achievements', DEFAULT_ACHIEVEMENTS);
+
+/* ============ UTILITY ============ */
+const $ = (sel, parent=document) => parent.querySelector(sel);
+const $$ = (sel, parent=document) => Array.from(parent.querySelectorAll(sel));
+
+function toast(msg, type='success'){
+  const el = $('#toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + (type === 'success' ? '' : type);
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.classList.remove('show'), 3000);
+}
+
+function fmtMoney(n){
+  return CONFIG.CURRENCY + ' ' + Number(n||0).toLocaleString('en-US');
+}
+
+function fmtTime(ts){
+  const d = new Date(ts);
+  const diff = (Date.now() - ts) / 1000;
+  if(diff < 60) return 'Sasa hivi';
+  if(diff < 3600) return Math.floor(diff/60) + 'd';
+  if(diff < 86400) return Math.floor(diff/3600) + 'h';
+  return d.toLocaleDateString();
+}
+
+function uid(){ return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2,8); }
+
+function roomCode(){
+  return 'MUMBI-' + Math.floor(1000 + Math.random()*9000);
+}
+
+function playSound(type='pop'){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    if(type==='pop'){ osc.frequency.value = 800; gain.gain.value = 0.08; }
+    if(type==='success'){ osc.frequency.value = 1200; gain.gain.value = 0.1; }
+    if(type==='error'){ osc.frequency.value = 300; gain.gain.value = 0.1; }
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
+    osc.stop(ctx.currentTime + 0.15);
+  }catch(e){}
+}
+
+/* ============ NAVIGATION ============ */
+function showScreen(id){
+  $$('.screen').forEach(s=> s.classList.remove('active'));
+  const el = $('#screen-' + id);
+  if(el){ el.classList.add('active'); State.currentScreen = id; }
+  $$('.nav-item').forEach(n=> n.classList.toggle('active', n.dataset.screen === id));
+  window.scrollTo({ top:0, behavior:'smooth' });
+
+  // Screen-specific init
+  const init = {
+    home: renderGames,
+    gameDetail: ()=>{},
+    multiplayer: initMultiplayer,
+    tournament: renderTournaments,
+    leaderboard: renderLeaderboard,
+    events: renderEvents,
+    chat: initChat,
+    friends: renderFriends,
+    clan: renderClans,
+    live: renderLive,
+    shop: renderShop,
+    wallet: renderWallet,
+    cart: renderCart,
+    checkout: renderCheckout,
+    receipt: ()=>{},
+    history: renderHistory,
+    rewards: renderRewards,
+    missions: renderMissions,
+    seasonpass: renderSeasonPass,
+    achievements: renderAchievements,
+    news: renderNews,
+    poll: renderPolls,
+    funbot: initFunBot,
+    tutorials: renderTutorials,
+    support: ()=>{},
+    profile: renderProfile,
+    settings: renderSettings,
+    admin: renderAdmin,
+    login: renderLogin
+  };
+  if(init[id]) init[id]();
+}
+
+/* ============ HEADER & SIDEBAR ============ */
+function toggleSidebar(force){
+  const sb = $('#sidebar'), ov = $('#overlay');
+  const open = force !== undefined ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+  ov.classList.toggle('show', open);
+}
+
+/* ============ THEME ============ */
+function applyTheme(theme){
+  State.theme = theme;
+  document.body.dataset.theme = theme;
+  S.set('mumbi_theme', theme);
+  $$('[data-theme]').forEach(c=> c.classList.toggle('active', c.dataset.theme === theme));
+}
+
+/* ============ WALLET ============ */
+function updateWallet(){
+  const w = State.wallet;
+  const bal = fmtMoney(w.balance);
+  $('#walletBalance').textContent = bal;
+  $('#gemsBalance').textContent = w.gems;
+  $('#xpBalance').textContent = w.xp + ' XP';
+  const full = $('#walletBalanceFull');
+  if(full) full.textContent = bal;
+  const g = $('#gemsFull');
+  if(g) g.textContent = w.gems;
+  S.set('mumbi_wallet', w);
+}
+
+function addMoney(amt, desc=''){
+  State.wallet.balance += amt;
+  updateWallet();
+  addHistory({ type:'credit', amount:amt, desc, ts:Date.now() });
+}
+function addGems(n){ State.wallet.gems += n; updateWallet(); }
+function addXP(n){
+  State.wallet.xp += n;
+  if(State.wallet.xp >= CONFIG.XP_PER_LEVEL * 10){
+    toast('🎉 Umepanda level!');
+  }
+  updateWallet();
+}
+
+/* ============ TRANSACTIONS ============ */
+function addHistory(tx){
+  const h = S.get('kanyo_history', []);
+  h.unshift(tx);
+  S.set('kanyo_history', h.slice(0, 100));
+}
+function renderHistory(){
+  const h = S.get('kanyo_history', []);
+  const el = $('#historyArea');
+  if(!h.length){ el.innerHTML = '<p class="muted center">Hakuna miamala bado.</p>'; return; }
+  el.innerHTML = h.map(t=>`
+    <div class="lb-row">
+      <div class="lb-rank ${t.type==='credit'?'gold':'silver'}">${t.type==='credit'?'➕':'➖'}</div>
+      <div class="lb-name">${t.desc || 'Malipo'}</div>
+      <div class="lb-score">${t.type==='credit'?'+':'-'}${fmtMoney(t.amount)}</div>
+    </div>
+  `).join('');
+}
+
+/* ============ NOTIFICATIONS ============ */
+function addNotif(title, text, icon='🔔', screen=''){
+  const n = { id:uid(), title, text, icon, screen, ts:Date.now(), read:false };
+  State.notifications.unshift(n);
+  S.set('Kanyo_notifs', State.notifications);
+  renderNotifBadge();
+  renderNotifList();
+  if(S.get('Kanyo_sound', true)) playSound('pop');
+  if(S.get('Kanyo_notif', true) && 'Notification' in window && Notification.permission === 'granted'){
+    try{ new Notification(title, { body:text, icon:'🎮' }); }catch(e){}
+  }
+}
+function renderNotifBadge(){
+  const unread = State.notifications.filter(n=>!n.read).length;
+  const b = $('#notifBadge');
+  if(unread > 0){
+    b.style.display = 'flex'; b.textContent = unread > 99 ? '99+' : unread;
+  } else { b.style.display = 'none'; }
+}
+function renderNotifList(){
+  const el = $('#notifList');
+  if(!State.notifications.length){
+    el.innerHTML = '<p class="muted center" style="padding:40px 0;">Hakuna taarifa bado.</p>';
+    return;
+  }
+  el.innerHTML = State.notifications.map(n=>`
+    <div class="notif-item ${n.read?'':'unread'}" data-nid="${n.id}" data-nscreen="${n.screen}">
+      <div class="notif-icon">${n.icon}</div>
+      <div class="notif-body">
+        <div class="notif-title">${n.title}</div>
+        <div class="notif-text">${n.text}</div>
+        <div class="notif-time">${fmtTime(n.ts)}</div>
+      </div>
+    </div>
+  `).join('');
+  $$('.notif-item').forEach(it=>{
+    it.onclick = ()=>{
+      const n = State.notifications.find(x=>x.id === it.dataset.nid);
+      if(n){ n.read = true; S.set('mumbi_notifs', State.notifications); renderNotifBadge(); renderNotifList(); }
+      if(n && n.screen) showScreen(n.screen);
+      $('#notifPanel').classList.remove('open');
+    };
+  });
+}
+
+/* ============ GAMES ============ */
+function getGames(){ return S.get('mumbi_games', DEFAULT_GAMES); }
+
+function renderGames(){
+  const games = getGames();
+  const filter = State.currentFilter;
+  const filtered = games.filter(g=>{
+    if(filter === 'all') return true;
+    if(['bure','kulipia','offline','online'].includes(filter)) return g.type === filter;
+    return g.category === filter;
+  });
+  const grid = $('#gamesGrid');
+  if(!filtered.length){
+    grid.innerHTML = '<p class="muted center" style="grid-column:1/-1;padding:40px;">Hakuna games kwenye kategoria hii.</p>';
+  } else {
+    grid.innerHTML = filtered.map(g=>gameCardHTML(g)).join('');
+  }
+  $$('.game-card').forEach(c=>{
+    c.onclick = ()=> openGameDetail(c.dataset.gid);
+  });
+
+  // Featured
+  const featured = games.filter(g=>g.featured).slice(0,6);
+  $('#featuredScroll').innerHTML = featured.map(g=>featuredCardHTML(g)).join('');
+  $$('#featuredScroll .featured-card').forEach(c=> c.onclick = ()=> openGameDetail(c.dataset.gid));
+
+  // Trending
+  const trending = games.filter(g=>g.trending).slice(0,6);
+  $('#trendingScroll').innerHTML = trending.map(g=>featuredCardHTML(g)).join('');
+  $$('#trendingScroll .featured-card').forEach(c=> c.onclick = ()=> openGameDetail(c.dataset.gid));
+}
+
+function gameCardHTML(g){
+  const badge = `badge-${g.type}`;
+  const price = g.type === 'kulipia' && g.price ? `<span class="game-price">${fmtMoney(g.price)}</span>` : '';
+  const thumb = g.img ? `<img src="${g.img}" alt="${g.name}" onerror="this.parentNode.innerHTML='${g.icon||'🎮'}'">` : (g.icon||'🎮');
+  return `
+    <div class="game-card" data-gid="${g.id}">
+      <div class="game-thumb">${thumb}</div>
+      <div class="game-info">
+        <div class="game-title">${g.name}</div>
+        <div class="game-meta">
+          <span class="game-badge ${badge}">${g.type}</span>
+          ${price || `<span class="game-price">⭐ ${g.rating||'N/A'}</span>`}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function featuredCardHTML(g){
+  const thumb = g.img ? `<img src="${g.img}" alt="${g.name}" onerror="this.parentNode.innerHTML='${g.icon||'🎮'}'">` : (g.icon||'🎮');
+  return `
+    <div class="featured-card" data-gid="${g.id}">
+      <div class="thumb">${thumb}</div>
+      <div class="info">
+        <div class="title">${g.name}</div>
+        <div class="rating">⭐ ${g.rating||'N/A'} • ${g.type}</div>
+      </div>
+    </div>
+  `;
+}
+
+function openGameDetail(gid){
+  const g = getGames().find(x=>x.id === gid);
+  if(!g) return;
+  const content = $('#gameDetailContent');
+  const thumb = g.img ? `<img src="${g.img}" alt="${g.name}">` : (g.icon||'🎮');
+  content.innerHTML = `
+    <div class="game-detail-hero">${thumb}</div>
+    <h2 class="game-detail-title">${g.name}</h2>
+    <div class="game-detail-meta">
+      <span class="game-badge badge-${g.type}">${g.type}</span>
+      <span>⭐ ${g.rating||'N/A'}</span>
+      <span>🎯 ${g.category||'General'}</span>
+      ${g.price ? `<span style="color:var(--gold);font-weight:800;">${fmtMoney(g.price)}</span>` : ''}
+    </div>
+    <div class="card">
+      <h4>📝 Maelezo</h4>
+      <p>${g.desc || 'Mchezo mzuri wa kufurahia.'}</p>
+    </div>
+    <div class="card">
+      <h4>🎬 Trailer</h4>
+      <div class="trailer-box">▶️ Video ya mchezo inapakiwa hapa</div>
+    </div>
+    <div class="card">
+      <h4>📸 Picha</h4>
+      <div class="screenshots-scroll">
+        <div class="screenshot">🖼️</div>
+        <div class="screenshot">🖼️</div>
+        <div class="screenshot">🖼️</div>
+        <div class="screenshot">🖼️</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn primary" id="playGameBtn" style="flex:1;">▶️ ${t('playNow')}</button>
+      ${g.type === 'kulipia' ? `<button class="btn" id="addToCartBtn" style="flex:1;">🛍️ ${t('cart')}</button>` : ''}
+    </div>
+  `;
+  const play = $('#playGameBtn');
+  if(play){
+    play.onclick = ()=>{
+      if(g.type === 'kulipia' && g.price > 0){
+        if(!confirm('Mchezo huu unalipiwa. Tuma ombi kwa admin au nunua kwa mfumo wa malipo. Endelea?')) return;
+      }
+      if(g.link && g.link !== '#'){ window.open(g.link, '_blank'); }
+      else { toast('🔗 Link ya mchezo haipo bado.'); }
+      // track
+      State.wallet.xp += 5;
+      updateWallet();
+    };
+  }
+  const addCart = $('#addToCartBtn');
+  if(addCart){
+    addCart.onclick = ()=>{
+      addToCart({ id:g.id, name:g.name, price:g.price, kind:'game' });
+      toast(t('addedCart'));
+    };
+  }
+  showScreen('gameDetail');
+}
+
+/* ============ CHAT ============ */
+function initChat(){
+  const name = S.get('mumbi_chatname', '');
+  if(name){
+    $('#chatJoin').style.display = 'none';
+    $('#chatRoom').style.display = 'block';
+    renderChatMessages();
+  } else {
+    $('#chatJoin').style.display = 'block';
+    $('#chatRoom').style.display = 'none';
+  }
+}
+
+function renderChatMessages(){
+  const msgs = S.get('mumbi_chat', []);
+  const el = $('#chatMessages');
+  const name = S.get('mumbi_chatname', '');
+  el.innerHTML = msgs.map(m=>`
+    <div class="msg ${m.who === name ? 'me' : 'other'}">
+      <div class="who">${m.who}</div>
+      <div>${m.text}</div>
+    </div>
+  `).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function sendChat(){
+  const input = $('#chatInput');
+  const text = input.value.trim();
+  const who = S.get('kanyo_chatname', 'Mgeni');
+  if(!text) return;
+  const msgs = S.get('mumbi_chat', []);
+  msgs.push({ who, text, ts:Date.now() });
+  S.set('kanyo_chat', msgs.slice(-200));
+  input.value = '';
+  renderChatMessages();
+}
+
+/* ============ SHOP ============ */
+function renderShop(){
+  const prods = S.get('kanyo_products', DEFAULT_PRODUCTS);
+  const grid = $('#shopGrid');
+  if(!prods.length){
+    grid.innerHTML = '<p class="muted center" style="grid-column:1/-1;padding:40px;">Hakuna bidhaa bado.</p>';
+    return;
+  }
+  grid.innerHTML = prods.map(p=>`
+    <div class="shop-card">
+      ${p.img ? `<img src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'no-img\\'>🛒</div>'">` : `<div class="no-img">🛒</div>`}
+      <div class="body">
+        <div class="name">${p.name}</div>
+        <div class="seller">👤 ${p.seller || 'Muuzaji'}</div>
+        <div class="price">${fmtMoney(p.price)}</div>
+        <div class="actions">
+          <button class="btn primary small" data-buy="${p.id}">🛒 Nunua</button>
+          <button class="btn danger small" data-report="${p.id}">🚨 Ripoti</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  $$('[data-buy]').forEach(b=>{
+    b.onclick = ()=>{
+      const p = prods.find(x=>x.id === b.dataset.buy);
+      if(!p) return;
+      const msg = encodeURIComponent(`Habari, nataka kununua ${p.name} kwa ${fmtMoney(p.price)} kutoka mumbigames.`);
+      window.open(`https://wa.me/${p.phone}?text=${msg}`, '_blank');
+    };
+  });
+  $$('[data-report]').forEach(b=>{
+    b.onclick = ()=>{
+      const p = prods.find(x=>x.id === b.dataset.report);
+      addNotif('🚨 Ripoti', `Umewasilisha ripoti kwa bidhaa: ${p.name}. Admin atachunguza.`, '🚨', 'shop');
+      toast('Ripoti imetumwa kwa admin.');
+    };
+  });
+}
+
+/* ============ CART ============ */
+function addToCart(item){
+  State.cart = S.get('mumbi_cart', []);
+  State.cart.push(item);
+  S.set('mumbi_cart', State.cart);
+  updateCartCount();
+}
+function updateCartCount(){
+  const c = S.get('mumbi_cart', []);
+  const el = $('#cartCount');
+  if(c.length){ el.style.display = 'inline-block'; el.textContent = c.length; }
+  else el.style.display = 'none';
+}
+function renderCart(){
+  const c = S.get('mumbi_cart', []);
+  const el = $('#cartArea');
+  if(!c.length){
+    el.innerHTML = '<p class="muted center" style="padding:40px;">Kikapu chako ni tupu.</p>';
+    return;
+  }
+  const total = c.reduce((s,i)=> s + (i.price||0), 0);
+  el.innerHTML = `
+    ${c.map((i,idx)=>`
+      <div class="lb-row">
+        <div class="lb-rank">${i.kind === 'game' ? '🎮' : '🛒'}</div>
+        <div class="lb-name">${i.name}</div>
+        <div class="lb-score">${fmtMoney(i.price)}</div>
+        <button class="btn danger small" data-rm="${idx}">✕</button>
+      </div>
+    `).join('')}
+    <div class="checkout-total">
+      <span>${t('total')}</span>
+      <span class="total-amount">${fmtMoney(total)}</span>
+    </div>
+    <button class="btn primary big" id="goCheckoutBtn">💳 ${t('checkout')}</button>
+  `;
+  $$('[data-rm]').forEach(b=> b.onclick = ()=>{
+    const c2 = S.get('mumbi_cart', []);
+    c2.splice(Number(b.dataset.rm), 1);
+    S.set('mumbi_cart', c2);
+    State.cart = c2;
+    updateCartCount();
+    renderCart();
+  });
+  $('#goCheckoutBtn').onclick = ()=>{
+    if(!c.length) return;
+    showScreen('checkout');
+  };
+}
+
+/* ============ CHECKOUT & PAYMENTS ============ */
+function renderCheckout(){
+  const c = S.get('mumbi_cart', []);
+  const total = c.reduce((s,i)=> s + (i.price||0), 0);
+  $('#checkoutTotal').textContent = fmtMoney(total);
+  $('#payNowBtn').onclick = doPayment;
+  $('#applyPromo').onclick = ()=>{
+    const code = $('#promoCode').value.trim().toUpperCase();
+    if(code === 'MUMBI50'){
+      const disc = total * 0.5;
+      $('#checkoutTotal').textContent = fmtMoney(total - disc);
+      toast('✅ Promo MUMBI50 imetumika!');
+    } else if(code === 'MUMBI10'){
+      const disc = total * 0.1;
+      $('#checkoutTotal').textContent = fmtMoney(total - disc);
+      toast('✅ Promo MUMBI10 imetumika!');
+    } else {
+      toast('Promo code si sahihi.', 'error');
+    }
+  };
+}
+
+function doPayment(){
+  const c = S.get('mumbi_cart', []);
+  if(!c.length){ toast('Kikapu ni tupu.', 'error'); return; }
+  const method = document.querySelector('input[name="payMethod"]:checked').value;
+  const phone = $('#payPhone').value.trim();
+  const total = c.reduce((s,i)=> s + (i.price||0), 0);
+
+  if(['mpesa','tigo','airtel','halo'].includes(method) && !phone){
+    toast('Weka namba ya simu.', 'error'); return;
+  }
+
+  // Show modal
+  $('#payModal').classList.add('show');
+  $('#payStatus').textContent = `Tuma ${fmtMoney(total)} kwa ${method.toUpperCase()}...`;
+
+  setTimeout(()=>{
+    $('#payStatus').textContent = 'Inathibitisha malipo...';
+    setTimeout(()=>{
+      $('#payStatus').textContent = 'Malipo yamefanikiwa! ✅';
+      playSound('success');
+      setTimeout(()=>{
+        $('#payModal').classList.remove('show');
+        // Complete
+        const receipt = {
+          id: 'RCP-' + Date.now(),
+          items: c.slice(),
+          total,
+          method,
+          phone: phone || '-',
+          ts: Date.now()
+        };
+        S.set('mumbi_last_receipt', receipt);
+        S.set('mumbi_cart', []);
+        State.cart = [];
+        updateCartCount();
+        // Cashback
+        const cashback = Math.floor(total * CONFIG.CASHBACK);
+        if(cashback > 0){ State.wallet.balance += cashback; updateWallet(); }
+        addHistory({ type:'debit', amount:total, desc:`Malipo (${method.toUpperCase()})`, ts:Date.now() });
+        if(cashback > 0) addHistory({ type:'credit', amount:cashback, desc:'Cashback 5%', ts:Date.now() });
+        addNotif('💰 Malipo Yamefanikiwa', `Umefanikiwa kulipa ${fmtMoney(total)}. Cashback: ${fmtMoney(cashback)}.`, '✅', 'history');
+        renderReceipt(receipt);
+        toast(t('paid'));
+        showScreen('receipt');
+      }, 800);
+    }, 1200);
+  }, 1000);
+}
+
+function renderReceipt(r){
+  const el = $('#receiptContent');
+  el.innerHTML = `
+    <div class="receipt">
+      <h3>🎮 KANYO PRO GAMING</h3>
+      <div class="receipt-row"><span>Risiti #:</span><span>${r.id}</span></div>
+      <div class="receipt-row"><span>Tarehe:</span><span>${new Date(r.ts).toLocaleString()}</span></div>
+      <div class="receipt-row"><span>Njia:</span><span>${r.method.toUpperCase()}</span></div>
+      ${r.phone !== '-' ? `<div class="receipt-row"><span>Simu:</span><span>${r.phone}</span></div>` : ''}
+      <hr>
+      ${r.items.map(i=>`<div class="receipt-row"><span>${i.name}</span><span>${fmtMoney(i.price)}</span></div>`).join('')}
+      <div class="receipt-row total"><span>JUMLA:</span><span>${fmtMoney(r.total)}</span></div>
+      <p style="text-align:center;margin-top:16px;font-size:12px;">Asante kwa kununua! 🎉</p>
+    </div>
+    <button class="btn primary" onclick="navigator.share?navigator.share({title:'Risiti mumbigames',text:'Risiti yangu ${r.id}'}):toast('Share haipatikani')">📤 Shea Risiti</button>
+    <button class="btn" onclick="showScreen('home')">🏠 Rudi Nyumbani</button>
+  `;
+}
+
+/* ============ WALLET ============ */
+function renderWallet(){
+  updateWallet();
+  const h = S.get('Kanyo_history', []).slice(0, 10);
+  const el = $('#walletHistory');
+  if(!h.length){ el.innerHTML = '<p class="muted center">Hakuna miamala bado.</p>'; return; }
+  el.innerHTML = h.map(t=>`
+    <div class="lb-row">
+      <div class="lb-rank ${t.type==='credit'?'gold':'silver'}">${t.type==='credit'?'➕':'➖'}</div>
+      <div class="lb-name">${t.desc||''}</div>
+      <div class="lb-score">${t.type==='credit'?'+':'-'}${fmtMoney(t.amount)}</div>
+    </div>
+  `).join('');
+  $('#depositBtn').onclick = ()=>{
+    const amt = prompt('Weka kiasi (TSh):', '1000');
+    if(amt && !isNaN(amt) && Number(amt) > 0){
+      addMoney(Number(amt), 'Deposit');
+      toast(`✅ Umeweka ${fmtMoney(amt)}`);
+    }
+  };
+  $('#withdrawBtn').onclick = ()=>{
+    const amt = prompt('Kiasi cha kutoa (TSh):', '500');
+    if(amt && !isNaN(amt) && Number(amt) > 0){
+      if(State.wallet.balance >= Number(amt)){
+        State.wallet.balance -= Number(amt);
+        updateWallet();
+        addHistory({ type:'debit', amount:Number(amt), desc:'Withdraw', ts:Date.now() });
+        toast(`✅ Umekutoa ${fmtMoney(amt)}`);
+      } else toast('Salio halitoshi.', 'error');
+    }
+  };
+  $('#buyGemsBtn').onclick = ()=>{
+    const packs = { 10:1000, 50:4500, 100:8000, 500:35000 };
+    const choice = prompt('Chagua gems: 10=TSh1,000 | 50=TSh4,500 | 100=TSh8,000 | 500=TSh35,000\nWeka idadi:', '50');
+    if(choice && packs[choice]){
+      if(State.wallet.balance >= packs[choice]){
+        State.wallet.balance -= packs[choice];
+        addGems(Number(choice));
+        addHistory({ type:'debit', amount:packs[choice], desc:`Nunua ${choice} gems`, ts:Date.now() });
+        toast(`💎 Umepata gems ${choice}!`);
+      } else toast('Salio halitoshi.', 'error');
+    }
+  };
+}
+
+/* ============ LEADERBOARD ============ */
+function renderLeaderboard(){
+  const players = [
+    { name:'GameMaster254', score:15420, rank:1 },
+    { name:'MumbiKing', score:13890, rank:2 },
+    { name:'KaliKiller', score:12450, rank:3 },
+    { name:'TZ_Sniper', score:9820, rank:4 },
+    { name:'Pro_Racer', score:8760, rank:5 },
+    { name:'Speed_Demon', score:7650, rank:6 },
+    { name:'NightWolf', score:6540, rank:7 },
+    { name:'LuckyStrike', score:5430, rank:8 }
+  ];
+  const el = $('#leaderboardArea');
+  el.innerHTML = players.map(p=>{
+    const cls = p.rank === 1 ? 'gold' : p.rank === 2 ? 'silver' : p.rank === 3 ? 'bronze' : '';
+    const medal = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : p.rank;
+    return `
+      <div class="lb-row ${p.rank<=3?'top'+p.rank:''}">
+        <div class="lb-rank ${cls}">${medal}</div>
+        <div class="lb-name">${p.name}</div>
+        <div class="lb-score">${p.score.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ============ TOURNAMENTS ============ */
+function renderTournaments(){
+  const tours = S.get('mumbi_tours', []);
+  const el = $('#tourList');
+  if(!tours.length){
+    el.innerHTML = '<p class="muted center" style="padding:40px;">Hakuna tournaments bado. Unda moja!</p>';
+  } else {
+    el.innerHTML = tours.map(t=>`
+      <div class="card">
+        <h4>🏆 ${t.name}</h4>
+        <p class="muted">🎮 ${t.game} • 👥 ${t.players} players</p>
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+          <span class="game-badge badge-bure">${t.fee ? fmtMoney(t.fee) : 'Bure'}</span>
+          <span class="game-badge badge-kulipia">Prize: ${fmtMoney(t.prize)}</span>
+        </div>
+        <button class="btn primary small" style="margin-top:10px;" onclick="joinTournament('${t.id}')">Jiunge</button>
+      </div>
+    `).join('');
+  }
+  $('#createTourBtn').onclick = ()=>{
+    const name = $('#tourName').value.trim();
+    const game = $('#tourGame').value.trim();
+    const players = Number($('#tourPlayers').value) || 8;
+    const fee = Number($('#tourFee').value) || 0;
+    const prize = Number($('#tourPrize').value) || 0;
+    if(!name || !game){ toast('Weka jina na mchezo.', 'error'); return; }
+    const tours = S.get('mumbi_tours', []);
+    tours.push({ id:uid(), name, game, players, fee, prize, ts:Date.now() });
+    S.set('mumbi_tours', tours);
+    toast('🏆 Tournament imeundwa!');
+    renderTournaments();
+    $('#tourName').value=''; $('#tourGame').value='';
+  };
+}
+window.joinTournament = (id)=>{
+  addNotif('🏆 Tournament', 'Umejiunga na tournament! Karibu.', '🏆', 'tournament');
+  toast('✅ Umejiunga!');
+};
+
+/* ============ EVENTS ============ */
+function renderEvents(){
+  const events = [
+    { icon:'🎄', name:'Christmas Special', date:'25 Desemba', desc:'Zawadi maalum za Krismasi!' },
+    { icon:'🌙', name:'Ramadan Tournament', date:'Ramadan', desc:'Mashindano ya usiku.' },
+    { icon:'🎆', name:'New Year Bash', date:'1 Januari', desc:'Kuanza mwaka mpya kwa ushindi.' },
+    { icon:'🇹🇿', name:'Uhuru Day', date:'9 Desemba', desc:'Kusherehekea uhuru.' }
+  ];
+  $('#eventsArea').innerHTML = events.map(e=>`
+    <div class="card">
+      <div style="display:flex;gap:12px;align-items:center;">
+        <div style="font-size:44px;">${e.icon}</div>
+        <div style="flex:1;">
+          <h4>${e.name}</h4>
+          <div class="muted small">${e.date}</div>
+          <p class="muted">${e.desc}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ FRIENDS ============ */
+function renderFriends(){
+  const f = S.get('Kanyo_friends', []);
+  const el = $('#friendsList');
+  if(!f.length){ el.innerHTML = '<p class="muted center" style="padding:20px;">Hakuna marafiki bado.</p>'; return; }
+  el.innerHTML = f.map((n,i)=>`
+    <div class="lb-row">
+      <div class="avatar">${n.charAt(0).toUpperCase()}</div>
+      <div class="lb-name">${n}</div>
+      <button class="btn danger small" data-fr="${i}">Ondoa</button>
+    </div>
+  `).join('');
+  $$('[data-fr]').forEach(b=> b.onclick = ()=>{
+    const arr = S.get('Kanyo_friends', []);
+    arr.splice(Number(b.dataset.fr), 1);
+    S.set('kanyo_friends', arr);
+    renderFriends();
+  });
+  $('#addFriendBtn').onclick = ()=>{
+    const n = $('#friendName').value.trim();
+    if(!n){ toast('Weka jina.', 'error'); return; }
+    const arr = S.get('kanyo_friends', []);
+    arr.push(n);
+    S.set('Kanyo_friends', arr);
+    $('#friendName').value = '';
+    renderFriends();
+    addNotif('👥 Rafiki Mpya', `${n} ameongezwa kwenye marafiki zako.`, '👥', 'friends');
+  };
+}
+
+/* ============ CLANS ============ */
+function renderClans(){
+  const c = S.get('kanyo_clans', [
+    { name:'Shadow Warriors', tag:'SHDW', members:24, emblem:'⚔️' },
+    { name:'TZ Legends', tag:'TZL', members:38, emblem:'🇹🇿' },
+    { name:'Pro Gamers', tag:'PRO', members:12, emblem:'🎮' }
+  ]);
+  $('#clansList').innerHTML = c.map(cl=>`
+    <div class="clan-card">
+      <div class="clan-emblem">${cl.emblem}</div>
+      <div class="clan-body">
+        <div class="clan-name">${cl.name}</div>
+        <div class="clan-tag">[${cl.tag}]</div>
+        <div class="clan-members">👥 ${cl.members} members</div>
+      </div>
+      <button class="btn primary small">Jiunge</button>
+    </div>
+  `).join('');
+  $('#createClanBtn').onclick = ()=>{
+    const name = $('#clanName').value.trim();
+    const tag = $('#clanTag').value.trim().toUpperCase();
+    if(!name || !tag){ toast('Weka jina na tag.', 'error'); return; }
+    const arr = S.get('kanyo_clans', c);
+    arr.push({ name, tag, members:1, emblem:'🏰' });
+    S.set('Kanyo_clans', arr);
+    renderClans();
+    toast('🏰 Clan imeundwa!');
+  };
+}
+
+/* ============ LIVE STREAMS ============ */
+function renderLive(){
+  const streams = [
+    { title:'GTA V Live - Heists!', user:'GameMaster254', viewers:1240, game:'GTA V' },
+    { title:'NFS Most Wanted Racing', user:'Speed_Demon', viewers:876, game:'NFS' },
+    { title:'PUBG Ranked Grind', user:'TZ_Sniper', viewers:2130, game:'PUBG' },
+    { title:'FIFA 25 Weekend League', user:'MumbiKing', viewers:654, game:'FIFA' }
+  ];
+  $('#liveGrid').innerHTML = streams.map(s=>`
+    <div class="live-card">
+      <span class="live-badge">🔴 LIVE</span>
+      <div class="live-thumb">📺</div>
+      <div class="live-info">
+        <div class="live-title">${s.title}</div>
+        <div class="live-viewers">👤 ${s.user} • 👁️ ${s.viewers} viewers</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ POLL ============ */
+function renderPolls(){
+  const polls = S.get('kanyo_polls', DEFAULT_POLLS);
+  const el = $('#pollArea');
+  if(!polls.length){ el.innerHTML = '<p class="muted center">Hakuna kura bado.</p>'; return; }
+  el.innerHTML = polls.map(p=>{
+    const total = p.options.reduce((s,o)=> s + o.votes, 0) || 1;
+    return `
+      <div class="card" data-poll="${p.id}">
+        <h4>${p.q}</h4>
+        ${p.options.map((o,idx)=>{
+          const pct = Math.round((o.votes/total)*100);
+          return `
+            <div class="poll-option" data-opt="${idx}" style="margin:8px 0;cursor:pointer;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;">
+                <span>${o.text}</span>
+                <span>${pct}%</span>
+              </div>
+              <div class="mission-progress" style="margin-top:4px;">
+                <div class="mission-progress-fill" style="width:${pct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+        ${p.voted !== null ? '<p class="muted small mt-8">✅ Umepiga kura yako</p>' : ''}
+      </div>
+    `;
+  }).join('');
+  $$('.poll-option').forEach(o=>{
+    o.onclick = ()=>{
+      const pollEl = o.closest('[data-poll]');
+      const p = polls.find(x=>x.id === pollEl.dataset.poll);
+      if(!p || p.voted !== null) return;
+      const idx = Number(o.dataset.opt);
+      p.options[idx].votes++;
+      p.voted = idx;
+      S.set('mumbi_polls', polls);
+      renderPolls();
+      toast('✅ Kura yako imehesabiwa!');
+    };
+  });
+}
+
+/* ============ NEWS ============ */
+function renderNews(){
+  const news = S.get('Kanyo_news', DEFAULT_NEWS);
+  $('#newsArea').innerHTML = news.map(n=>`
+    <div class="news-card">
+      <h4>📰 ${n.title}</h4>
+      <div class="date">${n.date}</div>
+      <p class="body">${n.body}</p>
+    </div>
+  `).join('');
+}
+
+/* ============ ACHIEVEMENTS ============ */
+function renderAchievements(){
+  const a = S.get('Kanyo_achievements', DEFAULT_ACHIEVEMENTS);
+  $('#achievementsArea').innerHTML = '<div class="ach-grid">' + a.map(x=>`
+    <div class="ach ${x.unlocked ? 'unlocked' : 'locked'}">
+      <div class="icon">${x.icon}</div>
+      <div class="name">${x.name}</div>
+      <div class="desc">${x.desc}</div>
+    </div>
+  `).join('') + '</div>';
+}
+
+/* ============ REWARDS ============ */
+function renderRewards(){
+  const claimed = S.get('Kanyo_streak', []);
+  const today = new Date().getDay();
+  const rewards = ['50 💰','100 💰','5 💎','200 💰','10 💎','300 💰','🎁 BIG'];
+  $('#rewardStreak').innerHTML = rewards.map((r,i)=>`
+    <div class="streak-day ${claimed.includes(i)?'claimed':''} ${i===today?'today':''}">
+      <div class="day-icon">${claimed.includes(i)?'✅':'🎁'}</div>
+      <div>${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][i]}</div>
+    </div>
+  `).join('');
+  $('#spinBtn').onclick = ()=>{
+    const deg = 720 + Math.floor(Math.random()*360);
+    $('#wheelItems').style.transform = `rotate(${deg}deg)`;
+    setTimeout(()=>{
+      const prizes = [50, 100, 200, 500, 1000, 5, 10, 20];
+      const prize = prizes[Math.floor(Math.random()*prizes.length)];
+      addMoney(prize, 'Spin wheel');
+      toast(`🎉 Umepata ${fmtMoney(prize)}!`);
+      playSound('success');
+    }, 4000);
+  };
+  $('#openBoxBtn').onclick = ()=>{
+    const box = $('#mysteryBox');
+    box.classList.add('opened');
+    box.textContent = '✨';
+    setTimeout(()=>{
+      const prizes = [
+        ()=>{ addMoney(500, 'Mystery box'); return '💰 TSh 500'; },
+        ()=>{ addGems(10); return '💎 Gems 10'; },
+        ()=>{ addMoney(100, 'Mystery box'); return '💰 TSh 100'; },
+        ()=>{ addGems(5); return '💎 Gems 5'; }
+      ];
+      const p = prizes[Math.floor(Math.random()*prizes.length)]();
+      toast(`🎁 Umepata ${p}!`);
+      box.classList.remove('opened');
+      box.textContent = '🎁';
+    }, 1000);
+  };
+}
+
+/* ============ MISSIONS ============ */
+function renderMissions(){
+  const missions = [
+    { icon:'🎮', title:'Cheza game 3', prog:1, total:3, reward:'100 💰' },
+    { icon:'🏆', title:'Shinda game 1', prog:0, total:1, reward:'200 💰' },
+    { icon:'💬', title:'Tuma ujumbe 5 kwenye chati', prog:2, total:5, reward:'50 💰' },
+    { icon:'🛒', title:'Nunua bidhaa 1', prog:0, total:1, reward:'5 💎' },
+    { icon:'👥', title:'Ongeza marafiki 2', prog:1, total:2, reward:'100 💰' }
+  ];
+  $('#missionsArea').innerHTML = missions.map(m=>{
+    const done = m.prog >= m.total;
+    return `
+      <div class="mission-item ${done?'completed':''}">
+        <div class="mission-icon">${m.icon}</div>
+        <div class="mission-body">
+          <div class="mission-title">${m.title}</div>
+          <div class="mission-progress"><div class="mission-progress-fill" style="width:${(m.prog/m.total)*100}%"></div></div>
+          <div class="mission-reward">${m.prog}/${m.total} • Zawadi: ${m.reward}</div>
+        </div>
+        ${done ? '<div style="font-size:24px;">✅</div>' : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+/* ============ SEASON PASS ============ */
+function renderSeasonPass(){
+  const lvl = Math.floor(State.wallet.xp / CONFIG.XP_PER_LEVEL) + 1;
+  const pct = ((State.wallet.xp % CONFIG.XP_PER_LEVEL) / CONFIG.XP_PER_LEVEL) * 100;
+  $('#seasonProgress').style.width = pct + '%';
+  $('#seasonLevel').textContent = Math.min(lvl, 50);
+  const rewards = Array.from({length:10}, (_,i)=>({
+    level:(i+1)*5,
+    reward: i%2===0 ? `${(i+1)*100} 💰` : `${(i+1)*2} 💎`,
+    claimed: lvl >= (i+1)*5
+  }));
+  $('#seasonRewards').innerHTML = rewards.map(r=>`
+    <div class="season-reward ${r.claimed?'claimed':'locked'}">
+      <div class="avatar">${r.level}</div>
+      <div style="flex:1;">
+        <div style="font-weight:800;font-size:13px;">Level ${r.level}</div>
+        <div class="muted small">${r.reward}</div>
+      </div>
+      ${r.claimed ? '<span style="color:var(--primary);font-weight:800;">✅</span>' : '<span class="muted small">🔒</span>'}
+    </div>
+  `).join('');
+}
+
+/* ============ FUNBOT ============ */
+function initFunBot(){
+  const msgs = S.get('mumbi_bot', [
+    { who:'bot', text:'Habari! Mimi ni FunBot 🤖. Ninaweza kukusaidia na:\n\n• Kutafuta games\n• Kuhusu malipo\n• Tournaments\n• Na mengine mengi!\n\nUliza kitu chochote!' }
+  ]);
+  renderBotMessages(msgs);
+  $('#botSendBtn').onclick = sendToBot;
+  $('#botInput').onkeydown = e => { if(e.key === 'Enter') sendToBot(); };
+}
+function renderBotMessages(msgs){
+  const el = $('#botMessages');
+  el.innerHTML = msgs.map(m=>`
+    <div class="msg ${m.who === 'me' ? 'me' : 'other'}">
+      <div class="who">${m.who === 'me' ? 'Wewe' : 'FunBot 🤖'}</div>
+      <div>${m.text.replace(/\n/g,'<br>')}</div>
+    </div>
+  `).join('');
+  el.scrollTop = el.scrollHeight;
+}
+function sendToBot(){
+  const input = $('#botInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const msgs = S.get('mumbi_bot', []);
+  msgs.push({ who:'me', text });
+  input.value = '';
+  renderBotMessages(msgs);
+  const reply = getBotReply(text.toLowerCase());
+  setTimeout(()=>{
+    msgs.push({ who:'bot', text:reply });
+    S.set('mumbi_bot', msgs);
+    renderBotMessages(msgs);
+  }, 700);
+}
+function getBotReply(q){
+  if(q.includes('game') || q.includes('mchezo')){
+    return '🎮 Tunayo games nyingi! Nenda kwenye Nyumbani uone GTA V, NFS Most Wanted, FIFA 25, PUBG, na nyingine nyingi.';
+  }
+  if(q.includes('malipo') || q.includes('lipa') || q.includes('pay')){
+    return '💰 Tuna njia nyingi za malipo:\n• M-Pesa\n• Tigo Pesa\n• Airtel Money\n• Halopesa\n• Kadi (Visa/Mastercard)\n• PayPal\n• Crypto\n\nNenda kwenye Wallet au Checkout.';
+  }
+  if(q.includes('admin')){
+    return '🛡️ Admin wetu ni msimamizi mkuu. Anaweza kupost games mpya, kudhibiti watumiaji, na kuona takwimu. Kama unahitaji msaada, wasiliana naye.';
+  }
+  if(q.includes('tournament') || q.includes('mashindano')){
+    return '🏆 Unaweza kuunda tournament yako au kujiunga na iliyopo. Nenda kwenye Tournaments!';
+  }
+  if(q.includes('multiplayer')){
+    return '🎮 Multiplayer inapatikana! Unaweza kucheza Tic-Tac-Toe, Chess, RPS, Quiz Battle, na Memory Match na marafiki. Nenda kwenye Multiplayer.';
+  }
+  if(q.includes('habari') || q.includes('news')){
+    return '📰 Habari za games zinapatikana kila siku. Angalia kwenye Habari!';
+  }
+  if(q.includes('msaada') || q.includes('help')){
+    return '📞 Karibu! Unaweza kuwasiliana nasi:\n• Support form\n• WhatsApp\n• Email\n\nNini kinakusumbua?';
+  }
+  if(q.includes('helo') || q.includes('habari') || q.includes('mambo')){
+    return '👋 Mambo vipi! Nipo hapa kukusaidia. Una swali gani?';
+  }
+  if(q.includes('asante') || q.includes('thanks')){
+    return '🙏 Karibu sana! Kama una swali lingine, uliza tu.';
+  }
+  return '😊 Sijaelewa vizuri. Unaweza kuuliza kuhusu:\n• Games\n• Malipo\n• Tournaments\n• Multiplayer\n• Habari\n• Msaada';
+}
+
+/* ============ TUTORIALS ============ */
+function renderTutorials(){
+  const tuts = [
+    { icon:'🎮', title:'Jinsi ya Kucheza Games', dur:'5 min' },
+    { icon:'💰', title:'Jinsi ya Kulipa kwa M-Pesa', dur:'3 min' },
+    { icon:'🏆', title:'Jinsi ya Kujiunga Tournament', dur:'4 min' },
+    { icon:'🤝', title:'Jinsi ya Kuunda Multiplayer Room', dur:'6 min' },
+    { icon:'🛒', title:'Jinsi ya Kununua Dukani', dur:'4 min' },
+    { icon:'💎', title:'Jinsi ya Kupata Gems', dur:'3 min' }
+  ];
+  $('#tutorialsArea').innerHTML = tuts.map(tu=>`
+    <div class="card" style="display:flex;gap:12px;align-items:center;">
+      <div style="font-size:36px;">${tu.icon}</div>
+      <div style="flex:1;">
+        <div style="font-weight:800;font-size:14px;">${tu.title}</div>
+        <div class="muted small">⏱️ ${tu.dur}</div>
+      </div>
+      <button class="btn primary small">▶️</button>
+    </div>
+  `).join('');
+}
+
+/* ============ PROFILE ============ */
+function renderProfile(){
+  const u = State.user;
+  if(u){
+    $('#profileName').textContent = u.name || u.email.split('@')[0];
+    $('#profileEmail').textContent = u.email;
+    $('#profileAvatar').textContent = (u.name || 'U').charAt(0).toUpperCase();
+    $('#openAccountBtn').style.display = 'none';
+    $('#logoutBtn').style.display = 'block';
+  } else {
+    $('#profileName').textContent = 'Mgeni';
+    $('#profileEmail').textContent = 'Hauna akaunti bado';
+    $('#profileAvatar').textContent = '🎮';
+    $('#openAccountBtn').style.display = 'block';
+    $('#logoutBtn').style.display = 'none';
+  }
+  $('#profileWins').textContent = S.get('mumbi_wins', 0);
+  $('#profileGames').textContent = S.get('mumbi_games_played', 0);
+  $('#profileXP').textContent = State.wallet.xp;
+  const mine = S.get('mumbi_my_games', []);
+  const el = $('#myGames');
+  if(!mine.length){ el.innerHTML = '<p class="muted small">Hauna games bado. Nunua kwenye duka!</p>'; }
+  else {
+    el.innerHTML = mine.map(g=>`<div class="lb-row"><div class="lb-rank">🎮</div><div class="lb-name">${g.name}</div></div>`).join('');
+  }
+  $('#openAccountBtn').onclick = ()=> showScreen('login');
+  $('#loginLink').onclick = (e)=>{ e.preventDefault(); showScreen('login'); };
+  $('#logoutBtn').onclick = ()=>{
+    S.del('mumbi_user'); S.del('mumbi_admin');
+    State.user = null; State.isAdmin = false;
+    $('#adminNavLink').style.display = 'none';
+    $('#sidebarUser').textContent = 'Mgeni';
+    toast('Umetoka kikamilifu.');
+    showScreen('home');
+  };
+}
+
+/* ============ SETTINGS ============ */
+function renderSettings(){
+  applyTheme(State.theme);
+  $$('[data-theme]').forEach(c=> c.classList.toggle('active', c.dataset.theme === State.theme));
+  $('#langSelect').value = State.lang;
+  $('#notifToggle').checked = S.get('mumbi_notif', true);
+  $('#soundToggle').checked = S.get('mumbi_sound', true);
+  $('#clearCacheBtn').onclick = ()=>{
+    if(confirm('Una uhakika? Mipangilio yote itafutwa.')){
+      const user = S.get('mumbi_user', null);
+      const admin = S.get('mumbi_admin', false);
+      localStorage.clear();
+      if(user) S.set('mumbi_user', user);
+      if(admin) S.set('mumbi_admin', admin);
+      toast('🧹 Cache imefutwa. Inapakia upya...');
+      setTimeout(()=> location.reload(), 1000);
+    }
+  };
+  $('#shareBtn').onclick = async ()=>{
+    const data = { title:'mumbigames', text:'Cheza games kali na ushinde zawadi!', url:CONFIG.APP_URL };
+    if(navigator.share){ try{ await navigator.share(data); }catch(e){} }
+    else { navigator.clipboard.writeText(CONFIG.APP_URL); toast('🔗 Link imecopywa!'); }
+  };
+  $('#installBtn').onclick = ()=>{
+    toast('📱 Install inapatikana kwenye browser menu.');
+  };
+}
+
+/* ============ ADMIN ============ */
+function renderAdmin(){
+  if(!State.isAdmin){ showScreen('login'); return; }
+  $('#adminEmail').textContent = CONFIG.ADMIN_EMAIL;
+
+  // Post Game
+  $('#postGameBtn').onclick = ()=>{
+    const name = $('#gName').value.trim();
+    const link = $('#gLink').value.trim();
+    if(!name || !link){ $('#postMsg').textContent = '❌ Jina na link ni lazima!'; return; }
+    const games = getGames();
+    const newG = {
+      id:uid(),
+      name, link,
+      img:$('#gImg').value.trim(),
+      desc:$('#gDesc').value.trim(),
+      category:$('#gCategory').value.trim() || 'general',
+      type:$('#gType').value,
+      price:Number($('#gPrice').value) || 0,
+      rating:Number($('#gRating').value) || 4.5,
+      featured:false, trending:true
+    };
+    games.unshift(newG);
+    S.set('mumbi_games', games);
+    $('#postMsg').textContent = '✅ Mchezo umepostiwa!';
+    toast(t('successPost'));
+    addNotif('🎮 Game Mpya', `${name} imeongezwa!`, '🎮', 'home');
+    $('#gName').value=''; $('#gLink').value=''; $('#gImg').value='';
+    $('#gDesc').value=''; $('#gCategory').value=''; $('#gPrice').value=''; $('#gRating').value='';
+    setTimeout(()=> $('#postMsg').textContent = '', 3000);
+  };
+
+  // Manage
+  const games = getGames();
+  $('#adminGamesList').innerHTML = games.map(g=>`
+    <div class="admin-game-row">
+      <div class="thumb">${g.img ? `<img src="${g.img}" onerror="this.parentNode.textContent='${g.icon||'🎮'}'">` : (g.icon||'🎮')}</div>
+      <div class="info">
+        <div class="title">${g.name}</div>
+        <div class="sub">${g.type} • ⭐ ${g.rating}</div>
+      </div>
+      <div class="actions">
+        <button class="btn small" data-del="${g.id}">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+  $$('#adminGamesList [data-del]').forEach(b=> b.onclick = ()=>{
+    if(!confirm('Futa mchezo huu?')) return;
+    const arr = getGames().filter(x=>x.id !== b.dataset.del);
+    S.set('mumbi_games', arr);
+    renderAdmin();
+    toast('🗑️ Umefuta mchezo.');
+  });
+
+  // Users
+  const users = S.get('mumbi_users', []);
+  if(!users.length){
+    $('#adminUsersList').innerHTML = '<p class="muted center">Hakuna watumiaji bado.</p>';
+  } else {
+    $('#adminUsersList').innerHTML = users.map(u=>`
+      <div class="user-row">
+        <div class="avatar">${(u.name||'U').charAt(0).toUpperCase()}</div>
+        <div style="flex:1;">
+          <div style="font-weight:800;font-size:13px;">${u.name || 'User'}</div>
+          <div class="muted small">${u.email}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Stats
+  $('#statsGrid').innerHTML = `
+    <div class="stat-box"><div class="num">${games.length}</div><div class="label">Games</div></div>
+    <div class="stat-box"><div class="num">${users.length}</div><div class="label">Watumiaji</div></div>
+    <div class="stat-box"><div class="num">${S.get('mumbi_products',[]).length}</div><div class="label">Bidhaa</div></div>
+    <div class="stat-box"><div class="num">${S.get('mumbi_tours',[]).length}</div><div class="label">Tournaments</div></div>
+  `;
+
+  // Notify
+  $('#sendGlobalNotif').onclick = ()=>{
+    const title = $('#notifTitle').value.trim();
+    const msg = $('#notifMsg').value.trim();
+    if(!title || !msg){ toast('Weka kichwa na maelezo.', 'error'); return; }
+    addNotif(title, msg, '📢', 'home');
+    toast('📢 Taarifa imetumwa kwa wote!');
+    $('#notifTitle').value=''; $('#notifMsg').value='';
+  };
+}
+
+/* ============ LOGIN ============ */
+function renderLogin(){
+  $$('[data-auth]').forEach(tb=> tb.onclick = ()=>{
+    $$('[data-auth]').forEach(x=> x.classList.remove('active'));
+    tb.classList.add('active');
+    const isReg = tb.dataset.auth === 'register';
+    $('#loginName').style.display = isReg ? 'block' : 'none';
+    $('#doLoginBtn').textContent = isReg ? t('register') : t('login');
+  });
+  $('#doLoginBtn').onclick = ()=>{
+    const email = $('#loginEmail').value.trim();
+    const pass = $('#loginPass').value;
+    const name = $('#loginName').value.trim();
+    const isReg = $('[data-auth].active').dataset.auth === 'register';
+
+    // ADMIN
+    if(email === CONFIG.ADMIN_EMAIL && pass === CONFIG.ADMIN_PASS){
+      State.isAdmin = true;
+      State.user = { email, name:'Admin', role:'admin' };
+      S.set('mumbi_admin', true);
+      S.set('mumbi_user', State.user);
+      $('#adminNavLink').style.display = 'flex';
+      $('#sidebarUser').textContent = 'Admin 🛡️';
+      $('#loginMsg').textContent = '✅ Karibu Admin!';
+      toast('🛡️ Karibu Admin!');
+      setTimeout(()=> showScreen('admin'), 800);
+      return;
+    }
+
+    // Normal users
+    const users = S.get('mumbi_users', []);
+    if(isReg){
+      if(!email || !pass || !name){ $('#loginMsg').textContent = '❌ Weka jina, email, na password.'; return; }
+      if(users.find(u=>u.email === email)){ $('#loginMsg').textContent = '❌ Email imetumika.'; return; }
+      const u = { email, pass, name, role:'user' };
+      users.push(u);
+      S.set('mumbi_users', users);
+      S.set('mumbi_user', u);
+      State.user = u;
+      $('#sidebarUser').textContent = name;
+      toast('✅ Akaunti imefunguliwa!');
+      showScreen('profile');
+    } else {
+      const u = users.find(x=>x.email === email && x.pass === pass);
+      if(!u){ $('#loginMsg').textContent = '❌ ' + t('errorLogin'); playSound('error'); return; }
+      State.user = u;
+      S.set('mumbi_user', u);
+      $('#sidebarUser').textContent = u.name || email;
+      toast('✅ ' + t('successLogin'));
+      showScreen('profile');
+    }
+  };
+}
+
+/* ============ MULTIPLAYER (BroadcastChannel) ============ */
+let mpChannel = null;
+function initMultiplayer(){
+  if(mpChannel) return;
+  if('BroadcastChannel' in window){
+    mpChannel = new BroadcastChannel('mumbi_mp');
+    mpChannel.onmessage = onMPMessage;
+  }
+  $('#createRoomBtn').onclick = createRoom;
+  $('#joinRoomBtn').onclick = joinRoom;
+  $('#leaveRoomBtn').onclick = leaveRoom;
+  $('#sendRoomChat').onclick = sendRoomChat;
+  $('#startGameBtn').onclick = startMPGame;
+}
+function createRoom(){
+  const game = $('#mpGameSelect').value;
+  const name = $('#mpPlayerName').value.trim() || 'Host';
+  State.room = {
+    code: roomCode(),
+    game,
+    players: [{ name, host:true }],
+    chat: [],
+    started: false
+  };
+  broadcast({ type:'room_created', room: State.room });
+  showActiveRoom();
+  toast('✅ Chumba kimeundwa!');
+}
+function joinRoom(){
+  const code = $('#mpRoomCode').value.trim().toUpperCase();
+  const name = $('#mpJoinName').value.trim() || 'Player';
+  if(!code){ toast('Weka room code.', 'error'); return; }
+  State.room = { code, game:'tictactoe', players:[{ name }], chat:[], started:false };
+  broadcast({ type:'player_joined', code, name });
+  showActiveRoom();
+  toast('✅ Umejiunga!');
+}
+function showActiveRoom(){
+  $('#mpActiveRoom').style.display = 'block';
+  $('#roomCodeDisplay').textContent = State.room.code;
+  renderRoomPlayers();
+  renderRoomChat();
+}
+function renderRoomPlayers(){
+  if(!State.room) return;
+  $('#playersList').innerHTML = State.room.players.map(p=>`
+    <div class="player-chip ${p.host?'host':''}">
+      ${p.host?'👑':''} ${p.name}
+    </div>
+  `).join('');
+}
+function renderRoomChat(){
+  if(!State.room) return;
+  $('#roomChat').innerHTML = State.room.chat.map(m=>`
+    <div class="msg other"><div class="who">${m.who}</div><div>${m.text}</div></div>
+  `).join('');
+}
+function sendRoomChat(){
+  const input = $('#roomChatInput');
+  const text = input.value.trim();
+  if(!text || !State.room) return;
+  State.room.chat.push({ who: State.room.players[0].name, text });
+  input.value = '';
+  renderRoomChat();
+  broadcast({ type:'chat', code: State.room.code, who: State.room.players[0].name, text });
+}
+function broadcast(msg){ if(mpChannel) try{ mpChannel.postMessage(msg); }catch(e){} }
+function onMPMessage(e){
+  const m = e.data;
+  if(m.type === 'chat' && State.room && State.room.code === m.code){
+    State.room.chat.push({ who:m.who, text:m.text });
+    renderRoomChat();
+  }
+  if(m.type === 'player_joined' && State.room && State.room.code === m.code){
+    State.room.players.push({ name:m.name });
+    renderRoomPlayers();
+    toast(`👋 ${m.name} amejiunga!`);
+  }
+}
+function leaveRoom(){
+  State.room = null;
+  $('#mpActiveRoom').style.display = 'none';
+  $('#gameArena').innerHTML = '';
+  toast('Umeondoka kwenye chumba.');
+}
+function startMPGame(){
+  if(!State.room) return;
+  $('#gameArena').innerHTML = '<h3 class="text-center">🎮 Mchezo unaanza...</h3>';
+  addNotif('🎮 Mchezo', 'Mchezo umeanza!', '🎮', 'multiplayer');
+}
+
+/* ============ EVENT BINDINGS ============ */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Loader
+  setTimeout(()=> $('#appLoader').classList.add('hide'), 1400);
+
+  // Header
+  $('#menuBtn').onclick = ()=> toggleSidebar();
+  $('#overlay').onclick = ()=> toggleSidebar(false);
+  $('#searchBtn').onclick = ()=> $('#searchOverlay').classList.add('show');
+  $('#closeSearch').onclick = ()=> $('#searchOverlay').classList.remove('show');
+  $('#notifBtn').onclick = ()=>{
+    $('#notifPanel').classList.toggle('open');
+    renderNotifList();
+  };
+  $('#closeNotif').onclick = ()=> $('#notifPanel').classList.remove('open');
+  $('#markAllRead').onclick = ()=>{
+    State.notifications.forEach(n=> n.read = true);
+    S.set('mumbi_notifs', State.notifications);
+    renderNotifBadge(); renderNotifList();
+  };
+
+  // Music
+  $('#musicBtn').onclick = ()=> $('#musicPlayer').classList.toggle('show');
+  $('#musicToggle').onclick = ()=>{
+    const a = $('#bgMusic');
+    if(a.paused){ a.play().catch(()=>{}); $('#musicToggle').textContent = '⏸️'; }
+    else { a.pause(); $('#musicToggle').textContent = '▶️'; }
+  };
+
+  // Nav
+  $$('[data-screen]').forEach(el=>{
+    el.onclick = ()=>{
+      showScreen(el.dataset.screen);
+      if(window.innerWidth < 1024) toggleSidebar(false);
+    };
+  });
+  $$('[data-back]').forEach(el=> el.onclick = ()=> showScreen('home'));
+
+  // Filters
+  $$('[data-filter]').forEach(f=> f.onclick = ()=>{
+    $$('[data-filter]').forEach(x=> x.classList.remove('active'));
+    f.classList.add('active');
+    State.currentFilter = f.dataset.filter;
+    renderGames();
+  });
+
+  // Chat
+  $('#joinChatBtn').onclick = ()=>{
+    const name = $('#chatName').value.trim();
+    if(!name){ toast('Weka jina.', 'error'); return; }
+    S.set('mumbi_chatname', name);
+    $('#chatJoin').style.display = 'none';
+    $('#chatRoom').style.display = 'block';
+    renderChatMessages();
+    toast('✅ Umejiunga chati!');
+  };
+  $('#sendChatBtn').onclick = sendChat;
+  $('#chatInput').onkeydown = e => { if(e.key === 'Enter') sendChat(); };
+
+  // Shop tabs
+  $$('[data-shop-tab]').forEach(t=> t.onclick = ()=>{
+    $$('[data-shop-tab]').forEach(x=> x.classList.remove('active'));
+    t.classList.add('active');
+    $('#shopView').style.display = t.dataset.shopTab === 'view' ? 'block' : 'none';
+    $('#shopAdd').style.display = t.dataset.shopTab === 'add' ? 'block' : 'none';
+  });
+  $('#addProductBtn').onclick = ()=>{
+    const name = $('#prodName').value.trim();
+    const price = Number($('#prodPrice').value);
+    const seller = $('#prodSeller').value.trim();
+    const phone = $('#prodPhone').value.trim();
+    const img = $('#prodImg').value.trim();
+    const desc = $('#prodDesc').value.trim();
+    if(!name || !price || !seller || !phone){ toast('Jaza sehemu zote.', 'error'); return; }
+    const arr = S.get('mumbi_products', DEFAULT_PRODUCTS);
+    arr.push({ id:uid(), name, price, seller, phone, img, desc });
+    S.set('mumbi_products', arr);
+    renderShop();
+    toast('✅ Bidhaa imeongezwa!');
+    $('#prodName').value=''; $('#prodPrice').value=''; $('#prodSeller').value='';
+    $('#prodPhone').value=''; $('#prodImg').value=''; $('#prodDesc').value='';
+  };
+
+  // Login side
+  $('#loginBtnSide').onclick = ()=> showScreen('login');
+
+  // Theme buttons
+  $$('[data-theme]').forEach(b=> b.onclick = ()=> applyTheme(b.dataset.theme));
+
+  // Language
+  $('#langSelect').onchange = e => {
+    State.lang = e.target.value;
+    S.set('mumbi_lang', State.lang);
+    applyLang();
+  };
+
+  // Notif toggles
+  $('#notifToggle').onchange = e => {
+    S.set('mumbi_notif', e.target.checked);
+    if(e.target.checked && 'Notification' in window){
+      Notification.requestPermission();
+    }
+  };
+  $('#soundToggle').onchange = e => S.set('mumbi_sound', e.target.checked);
+
+  // Admin tabs
+  $$('[data-admin-tab]').forEach(t=> t.onclick = ()=>{
+    $$('[data-admin-tab]').forEach(x=> x.classList.remove('active'));
+    t.classList.add('active');
+    ['post','manage','users','stats','notify'].forEach(k=>{
+      const el = $('#admin' + k.charAt(0).toUpperCase() + k.slice(1));
+      if(el) el.style.display = k === t.dataset.adminTab ? 'block' : 'none';
+    });
+    if(t.dataset.adminTab === 'stats') renderAdmin();
+    if(t.dataset.adminTab === 'users') renderAdmin();
+    if(t.dataset.adminTab === 'manage') renderAdmin();
+  });
+
+  // Tournament tabs
+  $$('[data-tour-tab]').forEach(t=> t.onclick = ()=>{
+    $$('[data-tour-tab]').forEach(x=> x.classList.remove('active'));
+    t.classList.add('active');
+    renderTournaments();
+  });
+  $$('[data-lb]').forEach(t=> t.onclick = ()=>{
+    $$('[data-lb]').forEach(x=> x.classList.remove('active'));
+    t.classList.add('active');
+    renderLeaderboard();
+  });
+  $$('[data-season]').forEach(t=> t.onclick = ()=>{
+    $$('[data-season]').forEach(x=> x.classList.remove('active'));
+    t.classList.add('active');
+    renderSeasonPass();
+  });
+
+  // Search
+  $('#searchInput').oninput = e=>{
+    const q = e.target.value.toLowerCase().trim();
+    const res = $('#searchResults');
+    if(!q){ res.innerHTML = ''; return; }
+    const games = getGames().filter(g => g.name.toLowerCase().includes(q) || (g.category||'').includes(q));
+    if(!games.length){ res.innerHTML = '<p class="muted center">Hakuna matokeo.</p>'; return; }
+    res.innerHTML = games.map(g=>`
+      <div class="card" style="cursor:pointer;" onclick="openGameDetail('${g.id}'); document.getElementById('searchOverlay').classList.remove('show');">
+        <h4>${g.icon||'🎮'} ${g.name}</h4>
+        <p class="muted small">${g.type} • ${g.category}</p>
+      </div>
+    `).join('');
+  };
+
+  // FunBot enter
+  // Settings theme apply
+  applyTheme(State.theme);
+  applyLang();
+  updateWallet();
+  updateCartCount();
+  renderNotifBadge();
+
+  // Sidebar user
+  if(State.user){
+    $('#sidebarUser').textContent = State.user.name || State.user.email;
+    if(State.isAdmin) $('#adminNavLink').style.display = 'flex';
+  }
+
+  // Welcome
+  setTimeout(()=>{
+    addNotif('👋 Karibu mumbigames', 'Cheza games kali na ushinde zawadi!', '🎮', 'home');
+  }, 2500);
+
+  // Request notification permission on user action
+  document.addEventListener('click', function once(){
+    if('Notification' in window && Notification.permission === 'default'){
+      Notification.requestPermission();
+    }
+    document.removeEventListener('click', once);
+  }, { once:true });
+
+  // Register service worker (PWA-ready)
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  }
+});
+</script>
+</body>
+</html>
